@@ -16,14 +16,13 @@
 	margin-bottom: 70px;
 	height: 150px;
 	background-color: #F8F8F8;
-	height: 150px;
 }
 </style>
 </head>
 
 <body>
 	<div class="container" id="notice">
-		<br> <br>
+		<br><br> <br>
 		<h4>
 			<center>
 				<span class="glyphicon glyphicon-bell"></span>&nbsp&nbsp공지사항

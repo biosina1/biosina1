@@ -27,7 +27,7 @@ footer {
      <hr>
 		<div class="copyright">
 			<div class="row text-center ">
-				<p>Copyright © 2017 All rights reserved</p>
+				<p>Copyright © 2018 All rights reserved</p>
 			</div>
 		</div>
 	</div>

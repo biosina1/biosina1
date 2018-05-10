@@ -1,4 +1,4 @@
-package com.javalec.sangho;
+package com.javalec.sangho.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -26,28 +26,27 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, Locale locale, Model model) {
-		return "home";
+		return "body";
 	}
 
 	@RequestMapping(value = "/login_Form", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
-
-		model.addAttribute("type", "login");
-		return "home";
+	public String login_Form(Locale locale, Model model) {
+		return "join_login/login_Form";
 	}
 
 	@RequestMapping(value = "/join_Form", method = RequestMethod.GET)
-	public String join(Locale locale, Model model) {
-
-		model.addAttribute("type", "join");
-		return "home";
+	public String join_Form(Locale locale, Model model) {
+		return "join_login/join_Form";
 	}
 
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
 	public String notice(Locale locale, Model model) {
-
-		model.addAttribute("type", "notice");
-		return "home";
+		return "menu/notice";
+	}
+	
+	@RequestMapping(value = "/arduino", method = RequestMethod.GET)
+	public String arduino(Locale locale, Model model) {
+		return "menu/arduino";
 	}
 
 }

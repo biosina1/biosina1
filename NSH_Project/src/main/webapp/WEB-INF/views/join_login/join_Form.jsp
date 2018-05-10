@@ -53,13 +53,45 @@
 .container {
 	margin-bottom: 50px;
 }
+
+#userid {
+	width: 245px;
+}
+
+#addrcode {
+	width: 213px;
+}
 </style>
 </head>
 <body>
 
+	<script>
+function CheckId(){
+  var tempid = $('#userid').val();
+  if(tempid == null){
+	  alert("아이디를 입력해주세요.");
+	  return;
+  }
+  
+  $.ajax({
+	  type:'POST';
+	  data:'tempid='+tempid;
+	  dataType:'text'
+	  url:'CheckId';
+	  success:function(rData,textStatus,xhr){
+		  var result = rData;
+		  if(result == 0){
+			  alert("사용이 가능한 아이디입니다.");}
+		  else{
+			  alert("사용이 불가능한 아이디입니다.");
+		  }
+	  }
+  }});
+}
+</script>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-4 col-md-offset-4">
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="row">
@@ -73,23 +105,54 @@
 					</div>
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-lg-12">
+							<div class="col-md-12">
 								<form id="register-form"
 									action="http://phpoll.com/register/process" method="post"
 									role="form" style="display: block;">
-									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1"
+
+									<div class="form-group" style="float: left;">
+										<input type="text" name="userid" id="userid" tabindex="1"
 											class="form-control" placeholder="아이디" value="">
 									</div>
 
+									<div class="form-group" id="button_size">
+										<button type="button" class="btn" onclick="CheckId()">중복확인</button>
+									</div>
+
 									<div class="form-group">
-										<input type="password" name="password" id="password"
-											tabindex="2" class="form-control" placeholder="비밀번호">
+										<input type="userpw" name="userpw" id="userpw" tabindex="2"
+											class="form-control" placeholder="비밀번호">
 									</div>
 									<div class="form-group">
-										<input type="password" name="confirm-password"
+										<input type="userpw2" name="confirm-password"
 											id="confirm-password" tabindex="2" class="form-control"
 											placeholder="비밀번호 확인">
+									</div>
+
+									<div class="form-group">
+										<input type="username" name="username" id="username"
+											tabindex="2" class="form-control" placeholder="이름">
+									</div>
+									<div class="form-group" style="float: left;">
+										<input type="text" name="addrcode" id="addrcode" tabindex="1"
+											class="form-control" placeholder="우편번호" value="" readonly>
+									</div>
+
+									<div class="form-group" id="button_size">
+										<button type="button" class="btn">우편번호 검색</button>
+									</div>
+
+									<div class="form-group">
+										<input type="addr" name="addr" id="addr" tabindex="2"
+											class="form-control" placeholder="주소" readonly>
+									</div>
+									<div class="form-group">
+										<input type="addr2" name="addr2" id="addr2" tabindex="2"
+											class="form-control" placeholder="상세주소">
+									</div>
+									<div class="form-group">
+										<input type="email" name="email" id="email" tabindex="2"
+											class="form-control" placeholder="이메일">
 									</div>
 									<div class="form-group">
 										<div class="row">

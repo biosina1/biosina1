@@ -4,19 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 
 <style>
 .navbar {
@@ -57,7 +44,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="notice">공지사항<span class="sr-only">(current)</span></a></li>
-					<li><a href="#">아두이노</a></li>
+					<li><a href="arduino">아두이노</a></li>
 					<li><a href="#">라즈베리파이</a></li>
 					<li><a href="#">LED/LCD</a></li>
 					<li><a href="#">센서</a></li>
