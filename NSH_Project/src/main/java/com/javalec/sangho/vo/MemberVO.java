@@ -7,10 +7,30 @@ public class MemberVO {
 	private String userid;
 	private String userpw;
 	private String username;
-	private String useraddcode;
-	private String useraddr;
-	private String useraddr2;
-	private Date userdate;
+	private String addrcode;
+	private String addr;
+	private String addr2;
+	private String phone;
+	private String email;
+	private Date regdate;
+	
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getUserid() {
 		return userid;
@@ -36,35 +56,36 @@ public class MemberVO {
 		this.username = username;
 	}
 
-	public String getUseraddcode() {
-		return useraddcode;
+	public String getAddrcode() {
+		return addrcode;
 	}
 
-	public void setUseraddcode(String useraddcode) {
-		this.useraddcode = useraddcode;
+	public void setAddrcode(String addcode) {
+		this.addrcode = addcode;
 	}
 
-	public String getUseraddr() {
-		return useraddr;
+	public String getAddr() {
+		return addr;
 	}
 
-	public void setUseraddr(String useraddr) {
-		this.useraddr = useraddr;
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
-	public String getUseraddr2() {
-		return useraddr2;
+	public String getAddr2() {
+		return addr2;
 	}
 
-	public void setUseraddr2(String useraddr2) {
-		this.useraddr2 = useraddr2;
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
 	}
 
-	public Date getUserdate() {
-		return userdate;
+	public Date getRegdate() {
+		return regdate;
 	}
 
-	public void setUserdate(Date userdate) {
-		this.userdate = userdate;
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
+
 }

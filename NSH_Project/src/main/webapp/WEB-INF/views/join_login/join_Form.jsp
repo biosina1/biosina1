@@ -155,6 +155,10 @@ function CheckId(){
 											class="form-control" placeholder="이메일">
 									</div>
 									<div class="form-group">
+										<input type="tel" name="tel" id="tel" tabindex="2"
+											class="form-control" placeholder="전화번호">
+									</div>
+									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
 												<input type="submit" name="register-submit"
