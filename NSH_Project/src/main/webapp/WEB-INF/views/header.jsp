@@ -36,23 +36,24 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="home">Phi Chai Sensor Mall</a>
+				<a class="navbar-brand" href="/home">Phi Chai Sensor Mall</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="notice">공지사항<span class="sr-only">(current)</span></a></li>
-					<li><a href="arduino">아두이노</a></li>
+				
+					<li><a href="/board/notice_list">공지사항<span class="sr-only">(current)</span></a></li>
+					<li><a href="/board/arduino">아두이노</a></li>
 					<li><a href="#">라즈베리파이</a></li>
 					<li><a href="#">LED/LCD</a></li>
 					<li><a href="#">센서</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="login_Form"><span
+					<li><a href="/login_Form"><span
 							class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
-					<li><a href="join_Form"><span
+					<li><a href="/join_Form"><span
 							class="glyphicon glyphicon-user"></span> 회원가입</a></li>
 					<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false">남상호님

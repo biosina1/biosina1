@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class MemberVO {
 
+	private int seq;
 	private String userid;
 	private String userpw;
 	private String username;
@@ -13,23 +14,13 @@ public class MemberVO {
 	private String phone;
 	private String email;
 	private Date regdate;
-	
-	public String getPhone() {
-		return phone;
+
+	public int getSeq() {
+		return seq;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setSeq(int seq) {
+		this.seq = seq;
 	}
 
 	public String getUserid() {
@@ -60,8 +51,8 @@ public class MemberVO {
 		return addrcode;
 	}
 
-	public void setAddrcode(String addcode) {
-		this.addrcode = addcode;
+	public void setAddrcode(String addrcode) {
+		this.addrcode = addrcode;
 	}
 
 	public String getAddr() {
@@ -78,6 +69,22 @@ public class MemberVO {
 
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Date getRegdate() {

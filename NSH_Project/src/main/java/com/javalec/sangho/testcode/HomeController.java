@@ -1,4 +1,4 @@
-package com.javalec.sangho.controller;
+package com.javalec.sangho.testcode;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping(value = "/")
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -40,14 +39,14 @@ public class HomeController {
 		return "join_login/join_Form";
 	}
 
-///*	@RequestMapping(value = "/notice", method = RequestMethod.GET)
-//	public String notice(Locale locale, Model model) {
-//		return "menu/notice";
-//	}
-//	
-//	@RequestMapping(value = "/arduino", method = RequestMethod.GET)
-//	public String arduino(Locale locale, Model model) {
-//		return "menu/arduino";
-//	}*/
+	@RequestMapping(value = "/notice", method = RequestMethod.GET)
+	public String notice(Locale locale, Model model) {
+		return "menu/notice";
+	}
+	
+	@RequestMapping(value = "/arduino", method = RequestMethod.GET)
+	public String arduino(Locale locale, Model model) {
+		return "menu/arduino";
+	}
 
 }

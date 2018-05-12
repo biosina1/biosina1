@@ -1,4 +1,4 @@
-package com.javalec.sangho.controller;
+package com.javalec.sangho.testcode;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

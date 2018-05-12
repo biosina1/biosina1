@@ -15,7 +15,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Inject
 	private SqlSession sqlSession;
 
-	private String namespace = "org.com.javalec.sangho.MemberMapper";
+	private static String namespace = "org.com.javalec.sangho.MemberMapper";
 
 	@Override
 	public String getTime() {

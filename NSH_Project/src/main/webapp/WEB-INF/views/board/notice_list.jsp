@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,10 +24,10 @@
 
 <body>
 	<div class="container" id="notice">
-		<br><br> <br>
+		<br> <br> <br>
 		<h4>
 			<center>
-				<span class="glyphicon glyphicon-bell"></span>&nbsp&nbsp공지사항
+				<span class="glyphicon glyphicon-bell"></span>&nbsp;&nbsp;공지사항
 			</center>
 		</h4>
 	</div>
@@ -41,24 +43,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td scope="row">1</td>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<td scope="row">2</td>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<td scope="row">3</td>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-				</tr>
+				<c:forEach var="item" items="${notice_list}" varStatus="status">
+					<tr>
+						<td scope="row">${status.count}</td>
+						<td><a href="/board/notice_content?seq=${item.seq}">${item.title}</a></td>
+						<td>${item.wdate}</td>
+						<td>${item.hits}</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

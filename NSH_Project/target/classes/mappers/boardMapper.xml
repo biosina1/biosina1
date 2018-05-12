@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.com.javalec.sangho.BoardMapper">
+	<!-- <select id="getTime" resultType="string"> select now() </select> -->
+	<insert id="create">
+		insert into board_db(type,title,content,writer)
+		values(#{type},#{title},#{content},#{writer})
+	</insert>
+
+	<select id="read" resultType="com.javalec.sangho.vo.BoardVO">
+		select *from board_db where
+		seq=#{seq}
+	</select>
+
+	<update id="update">
+		update board_db set
+		title=#{title},content=#{content}
+		where
+		seq=#{seq}
+	</update>
+
+	<delete id="delete">
+		delete from board_db where seq = #{seq}
+	</delete>
+
+	<select id="listAll" resultType="com.javalec.sangho.vo.BoardVO">
+		select *from board_db where
+		type=#{type}
+	</select>
+</mapper>

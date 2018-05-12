@@ -64,31 +64,6 @@
 </style>
 </head>
 <body>
-
-	<script>
-function CheckId(){
-  var tempid = $('#userid').val();
-  if(tempid == null){
-	  alert("아이디를 입력해주세요.");
-	  return;
-  }
-  
-  $.ajax({
-	  type:'POST';
-	  data:'tempid='+tempid;
-	  dataType:'text'
-	  url:'CheckId';
-	  success:function(rData,textStatus,xhr){
-		  var result = rData;
-		  if(result == 0){
-			  alert("사용이 가능한 아이디입니다.");}
-		  else{
-			  alert("사용이 불가능한 아이디입니다.");
-		  }
-	  }
-  }});
-}
-</script>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
