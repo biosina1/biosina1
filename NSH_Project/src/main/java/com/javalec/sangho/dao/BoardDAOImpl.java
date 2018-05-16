@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.javalec.sangho.vo.BoardVO;
+import com.javalec.sangho.vo.PageVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -35,6 +36,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public void hitup(int seq) throws Exception {
+		sqlsession.update(namespace + ".hit_update", seq);
+	}
+
+	@Override
 	public void delete(int seq) throws Exception {
 		sqlsession.delete(namespace + ".delete", seq);
 	}
@@ -44,4 +50,18 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlsession.selectList(namespace + ".listAll", type);
 	}
 
+	@Override
+	public List<BoardVO> listPage(int page) throws Exception {
+		return sqlsession.selectList(namespace + ".listPage", page);
+	}
+
+	@Override
+	public List<BoardVO> listPage2(PageVO vo) throws Exception {
+		return sqlsession.selectList(namespace + ".listPage2", vo);
+	}
+	
+	@Override
+	public int countPage(PageVO vo) throws Exception{
+		return sqlsession.selectOne(namespace + ".countPage", vo);
+	}
 }

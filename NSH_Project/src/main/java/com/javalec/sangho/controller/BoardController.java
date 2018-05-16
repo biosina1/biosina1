@@ -18,6 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javalec.sangho.service.BoardService;
 import com.javalec.sangho.vo.BoardVO;
+import com.javalec.sangho.vo.PageMakerVO;
+import com.javalec.sangho.vo.PageVO;
 
 /**
  * Handles requests for the application home page.
@@ -36,9 +38,14 @@ public class BoardController {
 	 */
 	// 공지사항 목록 출력
 	@RequestMapping(value = "/notice_list", method = RequestMethod.GET)
-	public String notice_list(Model model) throws Exception {
+	public String notice_list(PageVO vo, Model model) throws Exception {
 		logger.debug("board list....");
-		model.addAttribute("notice_list", service.ListAll("공지사항"));
+		model.addAttribute("notice_list", service.listPage2(vo));
+		PageMakerVO pagemaker = new PageMakerVO();
+		pagemaker.setPageVO(vo);
+		pagemaker.setTotalCount(service.pageCount(vo));
+		model.addAttribute("pageMaker", pagemaker);
+
 		return "board/notice_list";
 	}
 
@@ -61,6 +68,8 @@ public class BoardController {
 	@RequestMapping(value = "/notice_content", method = RequestMethod.GET)
 	public String notice_content(@RequestParam("seq") int seq, Model model) throws Exception {
 		logger.debug("board content....");
+		System.out.println("------------------------------ :: " + seq);
+		service.hitup(seq);
 		model.addAttribute("notice_content", service.read(seq));
 		return "board/notice_content";
 	}
@@ -89,10 +98,4 @@ public class BoardController {
 		int seq = vo.getSeq();
 		return "redirect:/board/notice_content?seq=" + seq;
 	}
-
-	// @RequestMapping(value = "/arduino", method = RequestMethod.GET)
-	// public String arduino(Model model) throws Exception {
-	// return "board/arduino";
-	// }
-
 }

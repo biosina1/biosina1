@@ -28,6 +28,27 @@
 
 	<select id="listAll" resultType="com.javalec.sangho.vo.BoardVO">
 		select *from board_db where
-		type=#{type}
+		type=#{type} order by seq desc
 	</select>
+
+	<update id="hit_update">
+		update board_db set hits = hits+1 where seq = #{seq}
+	</update>
+
+	<!-- 페이징 처리 -->
+
+	<select id="listPage" resultType="com.javalec.sangho.vo.BoardVO">
+		select *from board_db where seq
+		> 0 order by seq desc limit #{page},10
+	</select>
+
+	<select id="listPage2"
+		resultType="com.javalec.sangho.vo.BoardVO">
+	<![CDATA[	select *from board_db where seq > 0 order by seq desc limit #{pageStart}, #{perPageNum}]]>
+	</select>
+
+	<select id="countPage" resultType="int">
+		select count(seq) from board_db where seq>0
+	</select>
+
 </mapper>

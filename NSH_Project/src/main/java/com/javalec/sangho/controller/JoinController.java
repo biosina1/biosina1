@@ -17,21 +17,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping(value = "/")
-public class HomeController {
+@RequestMapping(value = "/join")
+public class JoinController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(JoinController.class);
 
 	/**
 	 * Simply selects the home view to render by returning its name.
+	 * 
+	 * 
 	 */
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(HttpServletRequest request, Locale locale, Model model) {
-		return "body";
+	
+	@RequestMapping(value = "/join_Form", method = RequestMethod.GET)
+	public String join_Form(Locale locale, Model model) {
+		return "join_login/join_Form";
 	}
 
-	@RequestMapping(value = "/login_Form", method = RequestMethod.GET)
-	public String login_Form(Locale locale, Model model) {
-		return "join_login/login_Form";
-	}
 }

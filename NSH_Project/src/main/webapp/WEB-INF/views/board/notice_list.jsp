@@ -45,7 +45,7 @@
 			<tbody>
 				<c:forEach var="item" items="${notice_list}" varStatus="status">
 					<tr>
-						<td scope="row">${status.count}</td>
+						<td scope="row">${item.seq}</td>
 						<td><a href="/board/notice_content?seq=${item.seq}">${item.title}</a></td>
 						<td>${item.wdate}</td>
 						<td>${item.hits}</td>
@@ -55,20 +55,38 @@
 		</table>
 	</div>
 	<br>
+
 	<div class="container">
 		<center>
 			<nav>
 			<ul class="pagination">
-				<li><a href="#" aria-label="Previous"> <span
-						aria-hidden="true">&laquo;</span>
-				</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
+			
+			
+
+			
+				<c:if test="${pageMaker.prev}">
+					<li><a href="notice_list?page=${pageMaker.startPage-1 }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+				</c:if>
+				
+				
+				
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					<li
+					<c:out value="${pageMaker.pagevo.page == idx?'class = active':''}"/>>
+						<a href="notice_list?page=${idx}">${idx}</a>
+					</li>
+				</c:forEach>
+				
+				
+				
+				
+				<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+					<li><a href="notice_list?page=${pageMaker.endPage +1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+					</a></li>
+				</c:if>
+				
+				
+				
 			</ul>
 			</nav>
 		</center>

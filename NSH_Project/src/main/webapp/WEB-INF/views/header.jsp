@@ -53,7 +53,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/login_Form"><span
 							class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
-					<li><a href="/join_Form"><span
+					<li><a href="/join/join_Form"><span
 							class="glyphicon glyphicon-user"></span> 회원가입</a></li>
 					<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false">남상호님
