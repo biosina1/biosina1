@@ -14,4 +14,8 @@
 		(userid,userpw,username,addrcode,addr,addr2,email,phone)
 		values(#{userid},#{userpw},#{username},#{addrcode},#{addr},#{addr2},#{email},#{phone})
 	</insert>
+
+	<select id="checkId" resultType="int">
+		select count(seq) from user_db where userid = #{userid}
+	</select>
 </mapper>

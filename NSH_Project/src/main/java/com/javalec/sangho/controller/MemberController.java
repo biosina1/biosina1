@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -12,25 +13,40 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.javalec.sangho.service.MemberService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 @RequestMapping(value = "/join")
-public class JoinController {
+public class MemberController {
 
-	private static final Logger logger = LoggerFactory.getLogger(JoinController.class);
+	@Inject
+	MemberService service;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 * 
 	 * 
 	 */
-	
+
 	@RequestMapping(value = "/join_Form", method = RequestMethod.GET)
-	public String join_Form(Locale locale, Model model) {
+	public String join_Form(Model model) {
 		return "join_login/join_Form";
+	}
+
+	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
+	public @ResponseBody int checkId(HttpServletRequest request, Model model) {
+		String userid = request.getParameter("userid");
+	    System.out.println("userid :: " + userid);
+		int result = service.checkId(userid);
+		System.out.println("result :: " + result);
+		return result;
 	}
 
 }

@@ -18,13 +18,13 @@ public class MemberDAOImpl implements MemberDAO {
 	private static String namespace = "org.com.javalec.sangho.MemberMapper";
 
 	@Override
-	public String getTime() {
-		return sqlSession.selectOne(namespace + ".getTime");
+	public void insertMember(MemberVO vo) {
+		sqlSession.insert(namespace + ".insertMember", vo);
 	}
 
 	@Override
-	public void insertMember(MemberVO vo) {
-		sqlSession.insert(namespace + ".insertMember", vo);
+	public int checkId(String userid) {
+		return sqlSession.selectOne(namespace + ".checkId", userid);
 	}
 
 }

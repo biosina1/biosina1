@@ -61,9 +61,42 @@
 #addrcode {
 	width: 213px;
 }
+
+label {
+	margin-top: 10px;
+	margin-left: 10px;
+}
 </style>
 </head>
 <body>
+
+	<script type="text/javascript">
+		function checkId() {
+			$('#userid').on('input', function() {
+				$.ajax({
+					type : 'POST',
+					url : '/join/checkId',
+					data : {
+						"userid" : $('#userid').val()
+					},
+					success : function(data) {
+						if ($.trim(data) == 0) {
+							$("#check_label").css("color","green");
+							$("#check_label").text("사용 가능")
+						} else {
+							$("#check_label").css("color","red");
+							$("#check_label").text("사용 불가")
+						}
+					},
+					error : function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status);
+						alert(thrownError);
+					}
+				});
+			});
+		}
+	</script>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -87,11 +120,12 @@
 
 									<div class="form-group" style="float: left;">
 										<input type="text" name="userid" id="userid" tabindex="1"
-											class="form-control" placeholder="아이디" value="">
+											class="form-control" placeholder="아이디" value="" oninput="checkId()">
 									</div>
 
 									<div class="form-group" id="button_size">
-										<button type="button" class="btn" onclick="CheckId()">중복확인</button>
+										<label id="check_label">필수 항목</label>
+										<!-- <button type="button" class="btn" data-target="#layerpop" data-toggle="modal">중복확인</button> -->
 									</div>
 
 									<div class="form-group">
@@ -146,6 +180,28 @@
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="layerpop">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header">
+					<!-- 닫기(x) 버튼 -->
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<!-- header title -->
+					<h4 class="modal-title">Header</h4>
+				</div>
+				<!-- body -->
+				<div class="modal-body">Body</div>
+				<!-- Footer -->
+				<div class="modal-footer">
+					Footer
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>
