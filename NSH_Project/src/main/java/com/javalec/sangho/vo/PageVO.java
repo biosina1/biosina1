@@ -34,12 +34,12 @@ public class PageVO {
 
 	public int getPageStart() {
 		// ex] 1 page = limit 0,10
-		System.out.println("페이지 : " + (this.page - 1) * perPageNum);
+		System.out.println("getPageStart :: " + (this.page - 1) * perPageNum);
 		return (this.page - 1) * perPageNum;
 	}
 
 	public int getPerPageNum() {
-		System.out.println(this.perPageNum);
+		System.out.println("getPerPageNum :: " + this.perPageNum);
 		return this.perPageNum;
 	}
 

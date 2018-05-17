@@ -10,6 +10,7 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
 .panel-login>.panel-heading a {
 	text-decoration: none;
@@ -62,8 +63,8 @@
 	width: 213px;
 }
 
-label {
-	margin-top: 10px;
+p {
+	margin-top: 30px;
 	margin-left: 10px;
 }
 </style>
@@ -81,10 +82,10 @@ label {
 					},
 					success : function(data) {
 						if ($.trim(data) == 0) {
-							$("#check_label").css("color","green");
+							$("#check_label").css("color", "green");
 							$("#check_label").text("사용 가능")
 						} else {
-							$("#check_label").css("color","red");
+							$("#check_label").css("color", "red");
 							$("#check_label").text("사용 불가")
 						}
 					},
@@ -120,11 +121,12 @@ label {
 
 									<div class="form-group" style="float: left;">
 										<input type="text" name="userid" id="userid" tabindex="1"
-											class="form-control" placeholder="아이디" value="" oninput="checkId()">
+											class="form-control" placeholder="아이디" value=""
+											oninput="checkId()">
 									</div>
 
 									<div class="form-group" id="button_size">
-										<label id="check_label">필수 항목</label>
+										<p class="text-danger" id="check_label">사용 불가</p>
 										<!-- <button type="button" class="btn" data-target="#layerpop" data-toggle="modal">중복확인</button> -->
 									</div>
 
@@ -148,7 +150,7 @@ label {
 									</div>
 
 									<div class="form-group" id="button_size">
-										<button type="button" class="btn">우편번호 검색</button>
+										<button type="button" class="btn" onclick="sample6_execDaumPostcode()">우편번호 검색</button>
 									</div>
 
 									<div class="form-group">
@@ -185,26 +187,55 @@ label {
 		</div>
 	</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="layerpop">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<!-- header -->
-				<div class="modal-header">
-					<!-- 닫기(x) 버튼 -->
-					<button type="button" class="close" data-dismiss="modal">×</button>
-					<!-- header title -->
-					<h4 class="modal-title">Header</h4>
-				</div>
-				<!-- body -->
-				<div class="modal-body">Body</div>
-				<!-- Footer -->
-				<div class="modal-footer">
-					Footer
-					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!-- Daum api -->
+
+	<script>
+		function sample6_execDaumPostcode() {
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							var fullAddr = ''; // 최종 주소 변수
+							var extraAddr = ''; // 조합형 주소 변수
+
+							// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+								fullAddr = data.roadAddress;
+
+							} else { // 사용자가 지번 주소를 선택했을 경우(J)
+								fullAddr = data.jibunAddress;
+							}
+
+							// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+							if (data.userSelectedType === 'R') {
+								//법정동명이 있을 경우 추가한다.
+								if (data.bname !== '') {
+									extraAddr += data.bname;
+								}
+								// 건물명이 있을 경우 추가한다.
+								if (data.buildingName !== '') {
+									extraAddr += (extraAddr !== '' ? ', '
+											+ data.buildingName
+											: data.buildingName);
+								}
+								// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+								fullAddr += (extraAddr !== '' ? ' ('
+										+ extraAddr + ')' : '');
+							}
+
+							// 우편번호와 주소 정보를 해당 필드에 넣는다.
+							document.getElementById('addrcode').value = data.zonecode; //5자리 새우편번호 사용
+							document.getElementById('addr').value = fullAddr;
+
+							// 커서를 상세주소 필드로 이동한다.
+							document.getElementById('addr2').focus();
+						}
+					}).open();
+		}
+	</script>
+
 </body>
 </html>
