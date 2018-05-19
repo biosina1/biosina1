@@ -5,17 +5,40 @@
 
 <mapper namespace="org.com.javalec.sangho.MemberMapper">
 
-	<select id="getTime" resultType="string">
-		select now()
-	</select>
 
-	<insert id="insertMember">
+	<select id="select" resultType="com.javalec.sangho.vo.MemberVO">
+		select *from user_db
+	</select>
+	<insert id="insert">
 		insert into user_db
 		(userid,userpw,username,addrcode,addr,addr2,email,phone)
 		values(#{userid},#{userpw},#{username},#{addrcode},#{addr},#{addr2},#{email},#{phone})
 	</insert>
 
+	<update id="update">
+		update user_db set
+		userpw=#{userpw},
+		addrcode=#{addrcode},
+		addr=#{addr},
+		addr2=#{addr2},
+		email=#{email},
+		phone=#{phone}
+		where seq = #{seq}
+	</update>
+
+	<delete id="delete">
+		delete from user_db where seq = #{seq}
+	</delete>
+
 	<select id="checkId" resultType="int">
-		select count(seq) from user_db where userid = #{userid}
+		select count(seq) from user_db
+		where userid = #{userid}
 	</select>
+
+	<select id="login" resultType="int">
+		select count(seq) from user_db
+		where
+		userid=#{userid} and userpw=#{userpw}
+	</select>
+
 </mapper>

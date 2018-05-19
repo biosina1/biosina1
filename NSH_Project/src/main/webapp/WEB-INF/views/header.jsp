@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<script
+	src="${pageContext.request.contextPath}/resources/jQuery-2.1.4.min.js"></script>
 <style>
 .navbar {
 	background-color: #FFFFFF;
@@ -23,7 +26,6 @@
 </style>
 </head>
 <body>
-
 	<!--메뉴-->
 	<div class="container">
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -43,29 +45,26 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-				
+
 					<li><a href="/board/notice_list">공지사항<span class="sr-only">(current)</span></a></li>
 					<li><a href="/board/arduino">아두이노</a></li>
 					<li><a href="#">라즈베리파이</a></li>
 					<li><a href="#">LED/LCD</a></li>
-					<li><a href="#">센서</a></li>
 				</ul>
+
+
 				<ul class="nav navbar-nav navbar-right">
+
+
 					<li><a href="/login_Form"><span
 							class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
 					<li><a href="/join/join_Form"><span
 							class="glyphicon glyphicon-user"></span> 회원가입</a></li>
-					<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">남상호님
-							환영합니다 <span class="caret"></span>
-					</a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul></li> -->
+
+					<li><a href="#">${sessionScope.userid}님 환영합니다.</a></li>
+					<li><a href="/logout">로그아웃</a></li>
+
+
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

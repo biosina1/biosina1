@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="${pageContext.request.contextPath}/resources/jQuery-2.1.4.min.js"></script>
 </head>
 <body>
 	<div class="container">

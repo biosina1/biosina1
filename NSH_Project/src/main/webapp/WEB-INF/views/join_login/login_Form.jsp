@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script
+	src="${pageContext.request.contextPath}/resources/jQuery-2.1.4.min.js"></script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <style>
 .panel-login>.panel-heading a {
 	text-decoration: none;
@@ -57,6 +58,25 @@
 </head>
 <body>
 
+	<script type="text/javascript">
+		function loginCheck() {
+
+			if ($("#userid").val().length == 0) {
+				alert("아이디를 입력하세요.");
+				$("#userid").focus();
+				return;
+			}
+
+			if ($("#userpw").val().length == 0) {
+				alert("비밀번호를 입력하세요.");
+				$("#userid").focus();
+				return;
+			}
+
+			$("#register-form").submit();
+		}
+	</script>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -74,25 +94,25 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="register-form"
-									action="http://phpoll.com/register/process" method="post"
+								<form id="register-form" action="/login" method="post"
 									role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1"
+										<input type="text" name="userid" id="userid" tabindex="1"
 											class="form-control" placeholder="아이디" value="">
 									</div>
 
 									<div class="form-group">
-										<input type="password" name="password" id="password"
-											tabindex="2" class="form-control" placeholder="비밀번호">
+										<input type="password" name="userpw" id="userpw" tabindex="2"
+											class="form-control" placeholder="비밀번호">
 									</div>
 
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit"
+												<input type="button" name="register-submit"
 													id="register-submit" tabindex="4"
-													class="form-control btn btn-register" value="로그인">
+													class="form-control btn btn-register" value="로그인"
+													onclick="javascript:loginCheck()">
 											</div>
 										</div>
 									</div>
@@ -104,5 +124,7 @@
 			</div>
 		</div>
 	</div>
+
+
 </body>
 </html>

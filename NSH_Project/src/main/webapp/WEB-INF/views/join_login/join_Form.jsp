@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script
+	src="${pageContext.request.contextPath}/resources/jQuery-2.1.4.min.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
 .panel-login>.panel-heading a {
@@ -56,7 +57,7 @@
 }
 
 #userid {
-	width: 245px;
+	width: 180px;
 }
 
 #addrcode {
@@ -72,29 +73,107 @@ p {
 <body>
 
 	<script type="text/javascript">
+	<!-- 중복 체크-->
 		function checkId() {
-			$('#userid').on('input', function() {
-				$.ajax({
-					type : 'POST',
-					url : '/join/checkId',
-					data : {
-						"userid" : $('#userid').val()
-					},
-					success : function(data) {
-						if ($.trim(data) == 0) {
-							$("#check_label").css("color", "green");
-							$("#check_label").text("사용 가능")
-						} else {
-							$("#check_label").css("color", "red");
-							$("#check_label").text("사용 불가")
+			if ($('#userid').val().length == null) {
+				$("#check_label").css("color", "red");
+				$("#check_label").text("사용 불가");
+			} else {
+				$('#userid').on('input', function() {
+					$.ajax({
+						type : 'POST',
+						url : '/join/checkId',
+						data : {
+							"userid" : $('#userid').val()
+						},
+						success : function(data) {
+							if ($.trim(data) == 0) {
+								$("#check_label").css("color", "green");
+								$("#check_label").text("사용 가능")
+							} else {
+								$("#check_label").css("color", "red");
+								$("#check_label").text("사용 불가")
+							}
+						},
+						error : function(xhr, ajaxOptions, thrownError) {
+							alert(xhr.status);
+							alert(thrownError);
 						}
-					},
-					error : function(xhr, ajaxOptions, thrownError) {
-						alert(xhr.status);
-						alert(thrownError);
-					}
+					});
 				});
-			});
+				return;
+			}
+		}
+
+		function JoinCheck() {
+
+			if ($("#userid").val().length == 0) {
+				alert("아이디를 입력하세요.");
+				$("#userid").focus();
+				return;
+			}
+			
+			if ($("#check_label").text() == '사용 불가') {
+				alert("사용할 수 없는 아이디 입니다.");
+				$("#userid").focus();
+				return;
+			}
+
+			if ($("#userpw").val().length == 0) {
+				alert("비밀번호를 입력하세요.");
+				$("#userpw").focus();
+				return;
+			}
+
+			if ($("#userpw2").val().length == 0) {
+				alert("비밀번호를 입력하세요.");
+				$("#userpw2").focus();
+				return;
+			}
+			
+			if ($("#userpw").val() != $("#userpw2").val()) {
+				alert("비밀번호가 일치하지 않습니다.");
+				$("#userpw").focus();
+				return;
+			}
+			
+			if ($("#username").val().length == 0) {
+				alert("이름을 입력하세요.");
+				$("#username").focus();
+				return;
+			}
+			
+			if ($("#addrcode").val().length == 0) {
+				alert("주소를 입력하세요.");
+				$("#addrcode").focus();
+				return;
+			}
+			
+			if ($("#addr").val().length == 0) {
+				alert("주소를 입력하세요.");
+				$("#addr").focus();
+				return;
+			}
+			
+			if ($("#addr2").val().length == 0) {
+				alert("상세주소를 입력하세요.");
+				$("#addr2").focus();
+				return;
+			}
+			
+			if ($("#email").val().length == 0) {
+				alert("이메일를 입력하세요.");
+				$("#email").focus();
+				return;
+			}
+			
+			if ($("#phone").val().length == 0) {
+				alert("전화번호를 입력하세요.");
+				$("#phone").focus();
+				return;
+			}
+			
+			$("#register-form").submit();
 		}
 	</script>
 
@@ -115,9 +194,8 @@ p {
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-12">
-								<form id="register-form"
-									action="http://phpoll.com/register/process" method="post"
-									role="form" style="display: block;">
+								<form id="register-form" action="/join/insert" method="post" role="form"
+									style="display: block;">
 
 									<div class="form-group" style="float: left;">
 										<input type="text" name="userid" id="userid" tabindex="1"
@@ -125,19 +203,17 @@ p {
 											oninput="checkId()">
 									</div>
 
-									<div class="form-group" id="button_size">
+									<div class="form-group" id="button_size" align="center">
 										<p class="text-danger" id="check_label">사용 불가</p>
-										<!-- <button type="button" class="btn" data-target="#layerpop" data-toggle="modal">중복확인</button> -->
 									</div>
 
 									<div class="form-group">
-										<input type="userpw" name="userpw" id="userpw" tabindex="2"
+										<input type="password" name="userpw" id="userpw" tabindex="2"
 											class="form-control" placeholder="비밀번호">
 									</div>
 									<div class="form-group">
-										<input type="userpw2" name="confirm-password"
-											id="confirm-password" tabindex="2" class="form-control"
-											placeholder="비밀번호 확인">
+										<input type="password" name="userpw2" id="userpw2"
+											tabindex="2" class="form-control" placeholder="비밀번호 확인">
 									</div>
 
 									<div class="form-group">
@@ -150,7 +226,8 @@ p {
 									</div>
 
 									<div class="form-group" id="button_size">
-										<button type="button" class="btn" onclick="sample6_execDaumPostcode()">우편번호 검색</button>
+										<button type="button" class="btn"
+											onclick="sample6_execDaumPostcode()">우편번호 검색</button>
 									</div>
 
 									<div class="form-group">
@@ -166,15 +243,14 @@ p {
 											class="form-control" placeholder="이메일">
 									</div>
 									<div class="form-group">
-										<input type="tel" name="tel" id="tel" tabindex="2"
+										<input type="tel" name="phone" id="phone" tabindex="2"
 											class="form-control" placeholder="전화번호">
 									</div>
 									<div class="form-group">
 										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit"
-													id="register-submit" tabindex="4"
-													class="form-control btn btn-register" value="작성완료">
+											<div class="col-sm-6 col-sm-offset-3 btn">
+												<input type="button" value="완료"
+													onclick="javascript:JoinCheck()" class="register-submit form-control">
 											</div>
 										</div>
 									</div>
@@ -191,49 +267,47 @@ p {
 
 	<script>
 		function sample6_execDaumPostcode() {
-			new daum.Postcode(
-					{
-						oncomplete : function(data) {
-							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+			new daum.Postcode({
+				oncomplete : function(data) {
+					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-							var fullAddr = ''; // 최종 주소 변수
-							var extraAddr = ''; // 조합형 주소 변수
+					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+					var fullAddr = ''; // 최종 주소 변수
+					var extraAddr = ''; // 조합형 주소 변수
 
-							// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-								fullAddr = data.roadAddress;
+					// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+						fullAddr = data.roadAddress;
 
-							} else { // 사용자가 지번 주소를 선택했을 경우(J)
-								fullAddr = data.jibunAddress;
-							}
+					} else { // 사용자가 지번 주소를 선택했을 경우(J)
+						fullAddr = data.jibunAddress;
+					}
 
-							// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-							if (data.userSelectedType === 'R') {
-								//법정동명이 있을 경우 추가한다.
-								if (data.bname !== '') {
-									extraAddr += data.bname;
-								}
-								// 건물명이 있을 경우 추가한다.
-								if (data.buildingName !== '') {
-									extraAddr += (extraAddr !== '' ? ', '
-											+ data.buildingName
-											: data.buildingName);
-								}
-								// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-								fullAddr += (extraAddr !== '' ? ' ('
-										+ extraAddr + ')' : '');
-							}
-
-							// 우편번호와 주소 정보를 해당 필드에 넣는다.
-							document.getElementById('addrcode').value = data.zonecode; //5자리 새우편번호 사용
-							document.getElementById('addr').value = fullAddr;
-
-							// 커서를 상세주소 필드로 이동한다.
-							document.getElementById('addr2').focus();
+					// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+					if (data.userSelectedType === 'R') {
+						//법정동명이 있을 경우 추가한다.
+						if (data.bname !== '') {
+							extraAddr += data.bname;
 						}
-					}).open();
+						// 건물명이 있을 경우 추가한다.
+						if (data.buildingName !== '') {
+							extraAddr += (extraAddr !== '' ? ', '
+									+ data.buildingName : data.buildingName);
+						}
+						// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+						fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')'
+								: '');
+					}
+
+					// 우편번호와 주소 정보를 해당 필드에 넣는다.
+					document.getElementById('addrcode').value = data.zonecode; //5자리 새우편번호 사용
+					document.getElementById('addr').value = fullAddr;
+
+					// 커서를 상세주소 필드로 이동한다.
+					document.getElementById('addr2').focus();
+				}
+			}).open();
 		}
 	</script>
 
