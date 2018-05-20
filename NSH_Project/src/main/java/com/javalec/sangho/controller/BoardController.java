@@ -98,8 +98,5 @@ public class BoardController {
 		service.update(vo);
 		int seq = vo.getSeq();
 		return "redirect:/board/notice_content?seq=" + seq;
-	}
-
-	// -------------------------- search page ----------------------------
-
+	}	
 }

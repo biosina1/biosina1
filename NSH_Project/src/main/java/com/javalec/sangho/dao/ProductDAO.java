@@ -1,0 +1,20 @@
+package com.javalec.sangho.dao;
+
+import java.util.List;
+
+import com.javalec.sangho.vo.PageMakerVO;
+import com.javalec.sangho.vo.PageVO;
+import com.javalec.sangho.vo.ProductVO;
+
+public interface ProductDAO {
+
+	public void insert(ProductVO vo) throws Exception;
+
+	public void update(ProductVO vo) throws Exception;
+
+	public void delete(int seq) throws Exception;
+
+	public List<ProductVO> select(PageVO vo,String p_category) throws Exception;
+
+	public int countPage(String p_category) throws Exception;
+}

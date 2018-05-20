@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.com.javalec.sangho.productMapper">
+	<!-- <select id="getTime" resultType="string"> select now() </select> -->
+
+	<insert id="insert">
+		insert into
+		product_db(p_category,
+		p_name,
+		p_price,
+		p_count,
+		p_img,
+		p_img2,
+		p_content)
+		values(#{p_category},#{p_name},#{p_price},#{p_count},#{p_img},#{p_img2},#{p_content})
+	</insert>
+
+	<update id="update">
+		update product_db set
+		p_category=#{p_category},
+		p_name=#{p_name},
+		p_price=#{p_price},
+		p_count=#{p_count},
+		p_img=#{p_img},
+		p_img2=#{p_img2},
+		p_content=#{p_content}
+		where
+		seq=#{seq}
+	</update>
+
+	<delete id="delete">
+		delete from product_db where seq = #{seq}
+	</delete>
+
+	<!-- 페이징 처리 -->
+
+	<select id="select" resultType="com.javalec.sangho.vo.ProductVO">
+	<![CDATA[	select *from product_db where p_category = #{p_category} and seq > 0 order by seq desc limit #{vo.pageStart}, #{vo.perPageNum}]]>
+	</select>
+
+	<select id="countPage" resultType="int">
+		select count(seq) from
+		product_db where p_category = #{p_category} and seq>0
+	</select>
+
+</mapper>

@@ -47,7 +47,7 @@
 				<ul class="nav navbar-nav">
 
 					<li><a href="/board/notice_list">공지사항<span class="sr-only">(current)</span></a></li>
-					<li><a href="/board/arduino">아두이노</a></li>
+					<li><a href="/product/list?p_category=arduino">아두이노</a></li>
 					<li><a href="#">라즈베리파이</a></li>
 					<li><a href="#">LED/LCD</a></li>
 				</ul>

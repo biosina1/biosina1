@@ -30,7 +30,8 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-		<beans:property name="contentType" value="text/html; charset=UTF-8"/>
+		<beans:property name="contentType"
+			value="text/html; charset=UTF-8" />
 		<beans:property name="order" value="2" />
 	</beans:bean>
 
@@ -50,8 +51,7 @@
 	</beans:bean>
 
 	<beans:bean id="tilesConfigurer"
-		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"><!-- 
-			scope="request" -->
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"><!-- scope="request" -->
 		<beans:property name="definitions">
 			<beans:list>
 				<beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
@@ -59,4 +59,17 @@
 		</beans:property>
 	</beans:bean>
 
+	<!-- file Upload -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- max upload size in bytes -->
+		<beans:property name="maxUploadSize" value="5242880" /> <!-- 5MB -->
+		<!-- max size of file in memory (in bytes) -->
+		<beans:property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+	</beans:bean>
+
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<!-- 파일업로드 디렉토리 -->
+		<beans:constructor-arg value="D:\git_Project\NSH_Project\src\main\webapp" />
+	</beans:bean>
 </beans:beans>
