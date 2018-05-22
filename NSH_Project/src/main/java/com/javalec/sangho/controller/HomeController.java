@@ -57,8 +57,9 @@ public class HomeController {
 
 		int result = service.checkLogin(vo);
 
-		if (result == 1) {
+		if (result != 0) {
 			session.setAttribute("userid", vo.getUserid());
+			session.setAttribute("u_seq", result);
 			returnURL = "redirect:/home";
 		} else {
 			writer.println("<script>alert(\"존재하지 않는 회원압니다.\");</script>");

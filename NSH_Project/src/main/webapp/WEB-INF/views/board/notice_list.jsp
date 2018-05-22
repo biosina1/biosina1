@@ -62,36 +62,29 @@
 		</table>
 	</div>
 	<br>
-	<div class="container">
-		<center>
-			<nav>
-			<ul class="pagination">
 
-				<c:if test="${p_category}">
-					<li><a href="/board/notice_list?page=${pageMaker.startPage-1 }"
-						aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+	<div class="container">
+		<div class="row justify-content-center">
+			<ul class="pagination">
+				<c:if test="${pageMaker.prev}">
+					<li class="page-item"><a class="page-link"
+						href="/board/notice_list?page=${pageMaker.startPage-1 }">Previous</a></li>
 				</c:if>
 
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
 					var="idx">
-					<li
-						<c:out value="${pageMaker.pagevo.page == idx?'class = active':''}"/>>
-						<a href="/board/notice_list?page=${idx}">${idx}</a>
-					</li>
-				</c:forEach>
+					<li class="page-item"
+						<c:out value="${pageMaker.pagevo.page == idx?'class = active':''}"/>><a
+							class="page-link" href="/board/notice_list?page=${idx}">${idx}</a></li>
 
+					</c:forEach>
 
-				<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-					<li><a href="/board/notice_list?page=${pageMaker.endPage +1}"
-						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-					</a></li>
-				</c:if>
-			</ul>
-			</nav>
-		</center>
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+						<li class="page-item"><a class="page-link" href="/board/notice_list?page=${pageMaker.endPage+1 }">Next</a></li>
+					</c:if>
+				</ul>
+		</div>
 	</div>
-
-
 
 </body>
 </html>

@@ -12,6 +12,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+#notice {
+	margin-top: 70px;
+	margin-bottom: 70px;
+	height: 150px;
+	background-color: #F8F8F8;
+}
+</style>
 </head>
 <script>
 	$(document).ready(function() {
@@ -213,9 +221,19 @@
 	<form role="form" method="post">
 		<input type="hidden" name="seq" value=${notice_content.seq}>
 	</form>
+	
+	<div class="container" id="notice">
+		<br> <br> <br>
+		<h4>
+			<center>
+				<span class="glyphicon glyphicon-bell"></span>&nbsp;&nbsp;공지사항
+			</center>
+		</h4>
+	</div>
+	
 	<div class="row">
-		<div class="container col-md-6 col-md-offset-3">
-			<table class="table table-bordered">
+		<div class="container col-md-6 col-md-offset-6">
+			<table class="table table-bordered" width=100%>
 				<thead>
 					<tr>
 						<th width="70%">제목 :${notice_content.title}</th>
@@ -237,11 +255,11 @@
 				</tr>
 				<tr>
 					<th colspan=2>
-
-						<button type="button" class="btn btn-warning">수정</button>
-						<button type="button" class="btn btn-info">삭제</button>
-						<button type="button" class="btn btn-primary">목록</button>
-
+					<center>
+						<button type="button" class="btn btn-warning"  style="width: 150px;">수정</button>
+						<button type="button" class="btn btn-info"style="width: 150px; ">삭제</button>
+						<button type="button" class="btn btn-primary"style="width: 150px;">목록</button>
+				</center>
 					</th>
 				</tr>
 
@@ -250,14 +268,14 @@
 				<tr>
 				<tr>
 					<td colspan=2><input type='text' name='replyer'
-						id='newReplyWriter'></td>
+						id='newReplyWriter' size='60'></td>
 				<tr>
 				<tr>
 					<td colspan=2>REPLY TEXT</td>
 				<tr>
 				<tr>
 					<td colspan=2><input type='text' name='replytext'
-						id='newReplyText'></td>
+						id='newReplyText' size='60'></td>
 				<tr>
 				<tr>
 					<td colspan=2><button id="replyAddBtn">ADD REPLY</button></td>

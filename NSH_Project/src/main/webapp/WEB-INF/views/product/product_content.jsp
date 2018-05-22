@@ -5,21 +5,78 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+	rel="stylesheet">
 <title>Insert title here</title>
+<style>
+
+img {
+	max-width: 100%;
+}
+
+</style>
 </head>
 <body>
-	<form action="/product/cart" method="get">
-		<input type="number" name="count">
-		<input type="hidden" name="p_seq" value="${product.seq}">
-		<input type="hidden" name="u_seq" value=1>
-		<input type="submit" value="전송">
-	</form>
+<script>
+function click3(){
+	 var count = $("#count").val();
+	 if(count == null){
+		alert("수량을 알맞게 입력하세요.");
+	 }
+	 
+	 else{
+		document.getElementById("myform").submit();
+	 } 
+}
+function click2(){
+	location.href="http://localhost:8080/home";
+}
+</script>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<hr>
+		<div class="row justify-content-center align-items-center">
+			<div class="col-sm-5">
+				<img src="${product.p_img}">
+			</div>
+			<div class="col-sm-5">
+				<hr>
+				&emsp;&emsp;&emsp;&emsp;조회&nbsp;&nbsp;:&nbsp;${product.p_hit}
+				<hr>
+				&emsp;&emsp;&emsp;&emsp;상품&nbsp;&nbsp;:&nbsp;${product.p_name}
+				<hr>
+				&emsp;&emsp;&emsp;&emsp;설명&nbsp;&nbsp;:&nbsp;${product.p_content}
+				<hr>
+				&emsp;&emsp;&emsp;&emsp;가격&nbsp;&nbsp;:&nbsp;${product.p_price}
+				<hr>
+				<form action="/product/insertcart" method="post" id="myform">
+				&emsp;&emsp;&emsp;&emsp;수량&nbsp;:&nbsp;
+					<input type="number" name="count" id="count" value=1 min="1">
+					<input type="hidden" name="p_seq" value="${product.seq}">
+					<input type="hidden" name="u_seq" value="${sessionScope.u_seq}">
+				<hr>
+				<center>
+					<button type="button" class="btn btn-outline-info" style="width:150px" onclick="click3()">장바구니</button>
+					<button type="button" class="btn btn-outline-primary" style="width:150px" onclick="click2()">목록으로</button>
+				</center>
+				<hr>
+				</form>
+			</div>
+		</div>
+	</div>
 	
-	<form action="/product/cart" method="get">
-		<input type="number" name="count">
-		<input type="hidden" name="p_seq" value="${product.seq}">
-		<input type="hidden" name="u_seq" value=1>
-		<input type="submit" value="전송">
-	</form>
+	<br><br><br><br><br>
+	<div class="container">
+	<center>
+	<img src="${product.p_img2}" width="80%" height="100%">
+	<br><br><br>
+	<img src="${product.p_img2}" width="80%" height="100%">
+	</center>
+	<div>
 </body>
 </html>

@@ -43,6 +43,9 @@ public class ProductServiceImpl implements ProductService {
 		return dao.content(seq);
 	}
 
+	public void hitup(int seq) throws Exception{
+		dao.hitup(seq);
+	}
 	// 장바구니
 	public void insertCart(CartVO vo) throws Exception {
 		dao.insertCart(vo);

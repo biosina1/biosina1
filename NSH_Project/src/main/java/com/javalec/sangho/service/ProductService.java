@@ -23,6 +23,7 @@ public interface ProductService {
 
 	public ProductVO content(int seq) throws Exception;
 
+	public void hitup(int seq) throws Exception;
 	// 장바구니
 	public void insertCart(CartVO vo) throws Exception;
 

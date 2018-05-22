@@ -9,6 +9,15 @@ public class ProductVO {
 	private String p_img;
 	private String p_img2;
 	private String p_content;
+	private int p_hit;
+
+	public int getP_hit() {
+		return p_hit;
+	}
+
+	public void setP_hit(int p_hit) {
+		this.p_hit = p_hit;
+	}
 
 	public int getP_count() {
 		return p_count;

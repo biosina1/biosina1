@@ -4,13 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script
-	src="${pageContext.request.contextPath}/resources/jQuery-2.1.4.min.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
 .panel-login>.panel-heading a {
@@ -61,7 +54,7 @@
 }
 
 #addrcode {
-	width: 213px;
+	width: 222px;
 }
 
 p {
@@ -71,7 +64,9 @@ p {
 </style>
 </head>
 <body>
-
+	<br>
+	<br>
+	<br>
 	<script type="text/javascript">
 	<!-- 중복 체크-->
 		function checkId() {
@@ -112,7 +107,7 @@ p {
 				$("#userid").focus();
 				return;
 			}
-			
+
 			if ($("#check_label").text() == '사용 불가') {
 				alert("사용할 수 없는 아이디 입니다.");
 				$("#userid").focus();
@@ -130,59 +125,59 @@ p {
 				$("#userpw2").focus();
 				return;
 			}
-			
+
 			if ($("#userpw").val() != $("#userpw2").val()) {
 				alert("비밀번호가 일치하지 않습니다.");
 				$("#userpw").focus();
 				return;
 			}
-			
+
 			if ($("#username").val().length == 0) {
 				alert("이름을 입력하세요.");
 				$("#username").focus();
 				return;
 			}
-			
+
 			if ($("#addrcode").val().length == 0) {
 				alert("주소를 입력하세요.");
 				$("#addrcode").focus();
 				return;
 			}
-			
+
 			if ($("#addr").val().length == 0) {
 				alert("주소를 입력하세요.");
 				$("#addr").focus();
 				return;
 			}
-			
+
 			if ($("#addr2").val().length == 0) {
 				alert("상세주소를 입력하세요.");
 				$("#addr2").focus();
 				return;
 			}
-			
+
 			if ($("#email").val().length == 0) {
 				alert("이메일를 입력하세요.");
 				$("#email").focus();
 				return;
 			}
-			
+
 			if ($("#phone").val().length == 0) {
 				alert("전화번호를 입력하세요.");
 				$("#phone").focus();
 				return;
 			}
-			
+
 			$("#register-form").submit();
 		}
 	</script>
 
 	<div class="container">
-		<div class="row">
+		<div class="row justify-content-center align-items-center">
 			<div class="col-md-4 col-md-offset-4">
 				<div class="panel panel-login">
 					<div class="panel-heading">
-						<div class="row">
+						<div class="row justify-content-center align-items-center">
 							<div class="col-xs-12">
 								<center>
 									<a href="#" id="register-form-link">Register</a>
@@ -192,10 +187,10 @@ p {
 						<hr>
 					</div>
 					<div class="panel-body">
-						<div class="row">
+						<div class="row justify-content-center align-items-center">
 							<div class="col-md-12">
-								<form id="register-form" action="/join/insert" method="post" role="form"
-									style="display: block;">
+								<form id="register-form" action="/join/insert" method="post"
+									role="form" style="display: block;">
 
 									<div class="form-group" style="float: left;">
 										<input type="text" name="userid" id="userid" tabindex="1"
@@ -247,10 +242,11 @@ p {
 											class="form-control" placeholder="전화번호">
 									</div>
 									<div class="form-group">
-										<div class="row">
+										<div class="row justify-content-center align-items-center">
 											<div class="col-sm-6 col-sm-offset-3 btn">
 												<input type="button" value="완료"
-													onclick="javascript:JoinCheck()" class="register-submit form-control">
+													onclick="javascript:JoinCheck()"
+													class="register-submit form-control  btn btn-outline-primary">
 											</div>
 										</div>
 									</div>
@@ -310,6 +306,5 @@ p {
 			}).open();
 		}
 	</script>
-
 </body>
 </html>

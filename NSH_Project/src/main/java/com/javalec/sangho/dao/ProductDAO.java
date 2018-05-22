@@ -21,6 +21,8 @@ public interface ProductDAO {
 	public int countPage(String p_category) throws Exception;
 
 	public ProductVO content(int seq) throws Exception;
+	
+	public void hitup(int seq) throws Exception;
 
 	// Cart
 	public void insertCart(CartVO vo) throws Exception;

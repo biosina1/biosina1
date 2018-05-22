@@ -36,7 +36,7 @@
 	</select>
 
 	<select id="login" resultType="int">
-		select count(seq) from user_db
+		select seq from user_db
 		where
 		userid=#{userid} and userpw=#{userpw}
 	</select>

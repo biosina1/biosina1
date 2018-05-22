@@ -45,9 +45,7 @@ public class MemberController {
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
 	public @ResponseBody int checkId(HttpServletRequest request, Model model) {
 		String userid = request.getParameter("userid");
-		System.out.println("userid :: " + userid);
 		int result = service.checkId(userid);
-		System.out.println("result :: " + result);
 		return result;
 	}
 

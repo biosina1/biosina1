@@ -5,9 +5,18 @@ import java.sql.Date;
 public class CartListVO {
 	private int seq;
 	private String p_name;
-	private String p_price;
+	private String p_img;
+	private int p_price;
 	private Date date;
 	private int count;
+
+	public String getP_img() {
+		return p_img;
+	}
+
+	public void setP_img(String p_img) {
+		this.p_img = p_img;
+	}
 
 	public int getSeq() {
 		return seq;
@@ -25,11 +34,11 @@ public class CartListVO {
 		this.p_name = p_name;
 	}
 
-	public String getP_price() {
+	public int getP_price() {
 		return p_price;
 	}
 
-	public void setP_price(String p_price) {
+	public void setP_price(int p_price) {
 		this.p_price = p_price;
 	}
 

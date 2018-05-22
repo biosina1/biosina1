@@ -4,13 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script
-	src="${pageContext.request.contextPath}/resources/jQuery-2.1.4.min.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <style>
 .panel-login>.panel-heading a {
 	text-decoration: none;
@@ -53,11 +46,14 @@
 
 .container {
 	margin-bottom: 50px;
+	text-align: center;
 }
 </style>
 </head>
 <body>
-
+	<br>
+	<br>
+	<br>
 	<script type="text/javascript">
 		function loginCheck() {
 
@@ -77,54 +73,52 @@
 		}
 	</script>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
-				<div class="panel panel-login">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-12">
-								<center>
+	<div class="container ">
+		<center>
+			<div class="row justify-content-center align-items-center">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="panel panel-login">
+						<div class="panel-heading">
+							<div class="row justify-content-center align-items-center">
+								<div class="col-xs-12 ">
 									<a href="#" id="register-form-link">Login</a>
-								</center>
+								</div>
 							</div>
+							<hr>
 						</div>
-						<hr>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<form id="register-form" action="/login" method="post"
-									role="form" style="display: block;">
-									<div class="form-group">
-										<input type="text" name="userid" id="userid" tabindex="1"
-											class="form-control" placeholder="아이디" value="">
-									</div>
+						<div class="panel-body">
+							<div class="row justify-content-center align-items-center">
+								<div class="col-lg-12">
+									<form id="register-form" action="/login" method="post"
+										role="form" style="display: block;">
+										<div class="form-group">
+											<input type="text" name="userid" id="userid" tabindex="1"
+												class="form-control" placeholder="아이디" value="">
+										</div>
 
-									<div class="form-group">
-										<input type="password" name="userpw" id="userpw" tabindex="2"
-											class="form-control" placeholder="비밀번호">
-									</div>
+										<div class="form-group">
+											<input type="password" name="userpw" id="userpw" tabindex="2"
+												class="form-control" placeholder="비밀번호">
+										</div>
 
-									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="button" name="register-submit"
-													id="register-submit" tabindex="4"
-													class="form-control btn btn-register" value="로그인"
-													onclick="javascript:loginCheck()">
+										<div class="form-group">
+											<div class="row justify-content-center align-items-center">
+												<div class="col-sm-6 col-sm-offset-3">
+													<input type="button" name="register-submit"
+														id="register-submit" tabindex="4"
+														class="form-control btn btn-register" value="로그인"
+														onclick="javascript:loginCheck()">
+												</div>
 											</div>
 										</div>
-									</div>
-								</form>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</center>
 	</div>
-
-
 </body>
 </html>

@@ -49,6 +49,10 @@ public class ProductDAOImpl implements ProductDAO {
 	public ProductVO content(int seq) throws Exception {
 		return sqlsession.selectOne(namespace + ".content", seq);
 	}
+	
+	public void hitup(int seq) throws Exception{
+		sqlsession.update(namespace + ".hitup", seq);
+	}
 
 	// 장바구니
 

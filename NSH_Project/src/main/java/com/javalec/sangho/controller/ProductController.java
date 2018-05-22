@@ -1,6 +1,7 @@
 package com.javalec.sangho.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,8 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -82,46 +85,52 @@ public class ProductController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listAll(@RequestParam("p_category") String p_category, PageVO vo, Model model) throws Exception {
 
+		vo.setPerPageNum(12);
 		model.addAttribute("p_category", p_category);
 		model.addAttribute("list", service.select(vo, p_category));
 		PageMakerVO pagemaker = new PageMakerVO();
 		pagemaker.setPageVO(vo);
-		System.out.println("arduino :: " + p_category);
-		System.out.println(service.countPage(p_category));
 		pagemaker.setTotalCount(service.countPage(p_category));
 		model.addAttribute("pageMaker", pagemaker);
-
 		return "product/product_list";
 	}
 
 	@RequestMapping(value = "/content", method = RequestMethod.GET)
 	public String content(@RequestParam("seq") int seq, Model model) throws Exception {
+		service.hitup(seq);
 		model.addAttribute("product", service.content(seq));
 		return "product/product_content";
 	}
 
-	@RequestMapping(value = "/insertcart", method = RequestMethod.GET)
-	public String insertcart(CartVO vo, Model model) throws Exception {
+	@RequestMapping(value = "/insertcart", method = RequestMethod.POST)
+	public void insertcart(CartVO vo, Model model, HttpServletResponse response) throws Exception {
 		service.insertCart(vo);
-		return "product/product_content";
+
+		PrintWriter out = response.getWriter();
+		out.print("<script>");
+		out.print("alert('Add Cart Success');");
+		out.print("history.back();");
+		out.print("</script>");
 	}
 
-	@RequestMapping(value = "/updatecart", method = RequestMethod.GET)
+	@RequestMapping(value = "/updatecart", method = RequestMethod.POST)
 	public String updatecart(CartVO vo, Model model) throws Exception {
 		service.updateCart(vo);
-		return "product/product_content";
+		return "redirect:/product/selectcart?u_seq=" + vo.getU_seq();
 	}
 
-	@RequestMapping(value = "/deletecart", method = RequestMethod.GET)
-	public String deletecart(@RequestParam("seq") int seq, Model model) throws Exception {
+	@RequestMapping(value = "/deletecart", method = RequestMethod.POST)
+	public String deletecart(@RequestParam("seq") int seq, Model model, HttpSession session) throws Exception {
+		System.out.println("delete");
+		int u_seq = (int) session.getAttribute("u_seq");
 		service.deleteCart(seq);
-		return "product/product_content";
+		return "redirect:/product/selectcart?u_seq=" + u_seq;
 	}
 
 	@RequestMapping(value = "/selectcart", method = RequestMethod.GET)
-	public String selectcart(@RequestParam("u_seq") int u_seq, Model model) throws Exception {
-		service.selectCart(u_seq);
-		return "product/product_content";
+	public String selectcart(@RequestParam("u_seq") int u_seq, Model model, HttpSession session) throws Exception {
+		u_seq = (int) session.getAttribute("u_seq");
+		model.addAttribute("list", service.selectCart(u_seq));
+		return "product/product_cart";
 	}
-
 }

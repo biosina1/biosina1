@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="${pageContext.request.contextPath}/resources/jQuery-2.1.4.min.js"></script>
 </head>
 <body>
-	<div class="container">
+<%-- 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
@@ -187,6 +186,6 @@
 			</div>
 		</div>
 	</div>
-	<br><br><br>
+	<br><br><br> --%>
 </body>
 </html>
