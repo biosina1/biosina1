@@ -6,11 +6,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 #notice {
@@ -67,47 +62,36 @@
 		</table>
 	</div>
 	<br>
-
 	<div class="container">
 		<center>
 			<nav>
 			<ul class="pagination">
 
-
-
-
-				<c:if test="${pageMaker.prev}">
-					<li><a href="notice_list?page=${pageMaker.startPage-1 }"
+				<c:if test="${p_category}">
+					<li><a href="/board/notice_list?page=${pageMaker.startPage-1 }"
 						aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
 				</c:if>
-
-
 
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
 					var="idx">
 					<li
 						<c:out value="${pageMaker.pagevo.page == idx?'class = active':''}"/>>
-						<a href="notice_list?page=${idx}">${idx}</a>
+						<a href="/board/notice_list?page=${idx}">${idx}</a>
 					</li>
 				</c:forEach>
 
 
-
-
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
-					<li><a href="notice_list?page=${pageMaker.endPage +1}"
+					<li><a href="/board/notice_list?page=${pageMaker.endPage +1}"
 						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
 				</c:if>
-
-
-
 			</ul>
 			</nav>
 		</center>
 	</div>
 
-  
+
 
 </body>
 </html>

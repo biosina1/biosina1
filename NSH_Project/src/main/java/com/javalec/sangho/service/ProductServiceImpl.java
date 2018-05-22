@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.javalec.sangho.dao.ProductDAO;
+import com.javalec.sangho.vo.CartListVO;
+import com.javalec.sangho.vo.CartVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
 import com.javalec.sangho.vo.ProductVO;
@@ -35,5 +37,26 @@ public class ProductServiceImpl implements ProductService {
 
 	public int countPage(String p_category) throws Exception {
 		return dao.countPage(p_category);
+	}
+
+	public ProductVO content(int seq) throws Exception {
+		return dao.content(seq);
+	}
+
+	// 장바구니
+	public void insertCart(CartVO vo) throws Exception {
+		dao.insertCart(vo);
+	}
+
+	public void updateCart(CartVO vo) throws Exception {
+		dao.updateCart(vo);
+	}
+
+	public void deleteCart(int seq) throws Exception {
+		dao.deleteCart(seq);
+	}
+
+	public List<CartListVO> selectCart(int u_seq) throws Exception {
+		return dao.selectCart(u_seq);
 	}
 }

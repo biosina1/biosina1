@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javalec.sangho.service.ProductService;
 import com.javalec.sangho.service.ReplyService;
+import com.javalec.sangho.vo.CartVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
 import com.javalec.sangho.vo.ProductVO;
@@ -35,7 +36,6 @@ import com.javalec.sangho.vo.ReplyVO;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
@@ -81,12 +81,47 @@ public class ProductController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listAll(@RequestParam("p_category") String p_category, PageVO vo, Model model) throws Exception {
+
+		model.addAttribute("p_category", p_category);
 		model.addAttribute("list", service.select(vo, p_category));
-		/*
-		 * PageMakerVO pagemaker = new PageMakerVO(); pagemaker.setPageVO(vo);
-		 * pagemaker.setTotalCount(service.countPage(p_category));
-		 * model.addAttribute("pageMaker", pagemaker);
-		 */
+		PageMakerVO pagemaker = new PageMakerVO();
+		pagemaker.setPageVO(vo);
+		System.out.println("arduino :: " + p_category);
+		System.out.println(service.countPage(p_category));
+		pagemaker.setTotalCount(service.countPage(p_category));
+		model.addAttribute("pageMaker", pagemaker);
+
 		return "product/product_list";
 	}
+
+	@RequestMapping(value = "/content", method = RequestMethod.GET)
+	public String content(@RequestParam("seq") int seq, Model model) throws Exception {
+		model.addAttribute("product", service.content(seq));
+		return "product/product_content";
+	}
+
+	@RequestMapping(value = "/insertcart", method = RequestMethod.GET)
+	public String insertcart(CartVO vo, Model model) throws Exception {
+		service.insertCart(vo);
+		return "product/product_content";
+	}
+
+	@RequestMapping(value = "/updatecart", method = RequestMethod.GET)
+	public String updatecart(CartVO vo, Model model) throws Exception {
+		service.updateCart(vo);
+		return "product/product_content";
+	}
+
+	@RequestMapping(value = "/deletecart", method = RequestMethod.GET)
+	public String deletecart(@RequestParam("seq") int seq, Model model) throws Exception {
+		service.deleteCart(seq);
+		return "product/product_content";
+	}
+
+	@RequestMapping(value = "/selectcart", method = RequestMethod.GET)
+	public String selectcart(@RequestParam("u_seq") int u_seq, Model model) throws Exception {
+		service.selectCart(u_seq);
+		return "product/product_content";
+	}
+
 }

@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.javalec.sangho.vo.CartListVO;
+import com.javalec.sangho.vo.CartVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
 import com.javalec.sangho.vo.ProductVO;
@@ -41,7 +43,28 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	public int countPage(String p_category) throws Exception {
-		return sqlsession.insert(namespace + ".countPage", p_category);
+		return sqlsession.selectOne(namespace + ".countPage", p_category);
 	}
 
+	public ProductVO content(int seq) throws Exception {
+		return sqlsession.selectOne(namespace + ".content", seq);
+	}
+
+	// 장바구니
+
+	public void insertCart(CartVO vo) throws Exception {
+		sqlsession.insert(namespace + ".insertCart", vo);
+	}
+
+	public void updateCart(CartVO vo) throws Exception {
+		sqlsession.update(namespace + ".updateCart", vo);
+	}
+
+	public void deleteCart(int seq) throws Exception {
+		sqlsession.delete(namespace + ".deleteCart", seq);
+	}
+
+	public List<CartListVO> selectCart(int u_seq) throws Exception {
+		return sqlsession.selectList(namespace + ".selectCart", u_seq);
+	}
 }

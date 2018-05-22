@@ -31,13 +31,13 @@
 					<div class="thumbnail">
 						<img src="${item.p_img}" />
 						<div class="caption">
-							<center>						
+							<center>
 								<p>${item.p_name}</p>
 								<p>${item.p_price}</p>
 							</center>
 							<p>
-								<a href="#" class="btn btn-primary" role="button"
-									style="width: 100%;">구매하기</a>
+								<a href="/product/content?seq=${item.seq}"
+									class="btn btn-primary" role="button" style="width: 100%;">구매하기</a>
 							</p>
 						</div>
 					</div>
@@ -46,5 +46,34 @@
 		</div>
 	</div>
 
+	<div class="container">
+		<center>
+			<nav aria-label="Page navigation example">
+			<ul class="pagination">
+
+				<c:if test="${pageMaker.prev}">
+					<li><a
+						href="/product/list?page=${pageMaker.startPage-1 }&p_category=${p_category}"
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+				</c:if>
+
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
+					var="idx">
+					<li
+						<c:out value="${pageMaker.pagevo.page == idx?'class = active':''}"/>>
+						<a href="/product/list?page=${idx}&p_category=${p_category}">${idx}</a>
+					</li>
+				</c:forEach>
+
+				<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+					<li><a
+						href="/product/list?page=${pageMaker.endPage +1}&p_category=${p_category}"
+						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+					</a></li>
+				</c:if>
+			</ul>
+			</nav>
+		</center>
+	</div>
 </body>
 </html>

@@ -43,7 +43,35 @@
 
 	<select id="countPage" resultType="int">
 		select count(seq) from
-		product_db where p_category = #{p_category} and seq>0
+		product_db where p_category = #{p_category} and seq > 0
 	</select>
 
+	<select id="content"
+		resultType="com.javalec.sangho.vo.ProductVO">
+		select *from product_db where seq = #{seq}
+	</select>
+
+	<!-- 장바구니 -->
+	<select id="selectCart" resultType="com.javalec.sangho.vo.CartListVO">
+		select c.seq, p.p_name, p.p_price, c.cdate, c.count
+		from cart_db as c,
+		product_db as p
+		where c.u_seq = #{u_seq} and c.p_seq=p.seq;
+	</select>
+	
+	<insert id="insertCart">
+		insert into cart_db(p_seq,u_seq,count)
+		values(#{p_seq},#{u_seq},#{count})
+	</insert>
+
+	<update id="updateCart">
+		update cart_db set
+		p_seq=#{p_seq},
+		u_seq=#{u_Seq},
+		count=#{count} where seq = #{seq}
+	</update>
+
+	<delete id="deleteCart">
+		delete from cart_db where seq = #{seq}
+	</delete>
 </mapper>

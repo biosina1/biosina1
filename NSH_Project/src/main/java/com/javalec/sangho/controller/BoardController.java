@@ -44,6 +44,7 @@ public class BoardController {
 		model.addAttribute("notice_list", service.listPage2(vo));
 		PageMakerVO pagemaker = new PageMakerVO();
 		pagemaker.setPageVO(vo);
+		logger.debug("a : " + service.pageCount(vo));
 		pagemaker.setTotalCount(service.pageCount(vo));
 		model.addAttribute("pageMaker", pagemaker);
 
@@ -98,5 +99,5 @@ public class BoardController {
 		service.update(vo);
 		int seq = vo.getSeq();
 		return "redirect:/board/notice_content?seq=" + seq;
-	}	
+	}
 }
