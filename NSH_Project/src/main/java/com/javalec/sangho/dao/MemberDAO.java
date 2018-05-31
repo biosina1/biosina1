@@ -19,4 +19,6 @@ public interface MemberDAO {
 	
 	public int checkLogin(LoginVO vi);
 	
+	public MemberVO userinfo(int seq);
+	
 }

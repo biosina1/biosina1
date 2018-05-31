@@ -28,9 +28,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javalec.sangho.service.MemberService;
 import com.javalec.sangho.service.ProductService;
 import com.javalec.sangho.service.ReplyService;
 import com.javalec.sangho.vo.CartVO;
+import com.javalec.sangho.vo.OrderVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
 import com.javalec.sangho.vo.ProductVO;
@@ -47,6 +49,8 @@ public class ProductController {
 
 	@Inject
 	private ProductService service;
+	@Inject
+	private MemberService service2;
 
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String form(Model model) throws Exception {
@@ -121,7 +125,6 @@ public class ProductController {
 
 	@RequestMapping(value = "/deletecart", method = RequestMethod.POST)
 	public String deletecart(@RequestParam("seq") int seq, Model model, HttpSession session) throws Exception {
-		System.out.println("delete");
 		int u_seq = (int) session.getAttribute("u_seq");
 		service.deleteCart(seq);
 		return "redirect:/product/selectcart?u_seq=" + u_seq;
@@ -130,7 +133,17 @@ public class ProductController {
 	@RequestMapping(value = "/selectcart", method = RequestMethod.GET)
 	public String selectcart(@RequestParam("u_seq") int u_seq, Model model, HttpSession session) throws Exception {
 		u_seq = (int) session.getAttribute("u_seq");
+		model.addAttribute("user", service2.userinfo(u_seq));
 		model.addAttribute("list", service.selectCart(u_seq));
+		return "product/product_cart";
+	}
+
+	@RequestMapping(value = "/addorder", method = RequestMethod.POST)
+	public String addorder(OrderVO vo, Model model, HttpSession session) throws Exception {
+		System.out.println(vo.getAddrcode());
+		int u_seq = (int) session.getAttribute("u_seq");
+		vo.setU_seq(u_seq);
+		service.addorder(vo);
 		return "product/product_cart";
 	}
 }

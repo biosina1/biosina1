@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.javalec.sangho.vo.CartListVO;
 import com.javalec.sangho.vo.CartVO;
+import com.javalec.sangho.vo.OrderVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
 import com.javalec.sangho.vo.ProductVO;
@@ -24,7 +25,7 @@ public interface ProductService {
 	public ProductVO content(int seq) throws Exception;
 
 	public void hitup(int seq) throws Exception;
-	// 장바구니
+	// cart
 	public void insertCart(CartVO vo) throws Exception;
 
 	public void updateCart(CartVO vo) throws Exception;
@@ -32,4 +33,7 @@ public interface ProductService {
 	public void deleteCart(int seq) throws Exception;
 
 	public List<CartListVO> selectCart(int u_seq) throws Exception;
+	
+	//order
+	public void addorder(OrderVO vo) throws Exception;
 }

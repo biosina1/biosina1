@@ -20,4 +20,6 @@ public interface MemberService {
 	public int checkId(String userid);
 
 	public int checkLogin(LoginVO vo);
+	
+	public MemberVO userinfo(int seq);
 }

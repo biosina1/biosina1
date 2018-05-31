@@ -38,4 +38,8 @@ public class MemberServlceImpl implements MemberService {
 	public int checkLogin(LoginVO vo) {
 		return dao.checkLogin(vo);
 	}
+	
+	public MemberVO userinfo(int seq) {
+		return dao.userinfo(seq);
+	}
 }

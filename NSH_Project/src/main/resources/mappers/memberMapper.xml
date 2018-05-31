@@ -41,4 +41,9 @@
 		userid=#{userid} and userpw=#{userpw}
 	</select>
 
+	<select id="userinfo"
+		resultType="com.javalec.sangho.vo.MemberVO">
+		select *from user_db
+		where seq = #{seq}
+	</select>
 </mapper>

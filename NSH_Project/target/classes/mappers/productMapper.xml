@@ -59,7 +59,8 @@
 	<!-- 장바구니 -->
 	<select id="selectCart"
 		resultType="com.javalec.sangho.vo.CartListVO">
-		select c.seq, p.p_name, p.p_img, p.p_price, c.cdate, c.count
+		select c.seq, p.p_name, p.p_img, p.p_price, c.cdate,
+		c.count
 		from
 		cart_db as c,
 		product_db as p
@@ -80,4 +81,10 @@
 	<delete id="deleteCart">
 		delete from cart_db where seq = #{seq}
 	</delete>
+
+	<insert id="addorder">
+		insert into
+		order_db(u_seq,price,name,phone,addrcode,addr,addr2,message,payment)
+		values(#{u_seq},#{price},#{name},#{phone},#{addrcode},#{addr},#{addr2},#{message},#{payment})
+	</insert>
 </mapper>

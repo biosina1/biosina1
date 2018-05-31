@@ -47,6 +47,10 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int checkLogin(LoginVO vo) {
-		 return sqlSession.selectOne(namespace + ".login", vo);
+		return sqlSession.selectOne(namespace + ".login", vo);
+	}
+
+	public MemberVO userinfo(int seq) {
+		return sqlSession.selectOne(namespace + ".userinfo", seq);
 	}
 }

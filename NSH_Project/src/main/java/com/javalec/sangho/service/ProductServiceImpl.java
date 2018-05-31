@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.javalec.sangho.dao.ProductDAO;
 import com.javalec.sangho.vo.CartListVO;
 import com.javalec.sangho.vo.CartVO;
+import com.javalec.sangho.vo.OrderVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
 import com.javalec.sangho.vo.ProductVO;
@@ -61,5 +62,9 @@ public class ProductServiceImpl implements ProductService {
 
 	public List<CartListVO> selectCart(int u_seq) throws Exception {
 		return dao.selectCart(u_seq);
+	}
+	
+	public void addorder(OrderVO vo) throws Exception{
+		dao.addorder(vo);
 	}
 }

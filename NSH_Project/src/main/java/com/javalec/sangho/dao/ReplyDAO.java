@@ -18,4 +18,5 @@ public interface ReplyDAO {
 	public List<ReplyVO> listPage(int bno, PageVO vo);
 	
 	public int count(int bno) throws Exception;
+	
 }
