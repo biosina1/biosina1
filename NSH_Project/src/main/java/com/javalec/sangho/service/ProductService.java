@@ -39,4 +39,8 @@ public interface ProductService {
 	public void addorder(OrderVO vo) throws Exception;
 
 	public void order_product(OrderProductVO vo) throws Exception;
+	
+	public List<ProductVO> newitem() throws Exception;
+
+	public List<ProductVO> hititem() throws Exception;
 }

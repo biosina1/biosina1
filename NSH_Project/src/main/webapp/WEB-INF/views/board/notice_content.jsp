@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	pageContext.setAttribute("cn", "\n");
 	pageContext.setAttribute("br", "<br/>");
@@ -24,18 +25,18 @@
 		var formObj = $("form[role='form']");
 		console.log(formObj);
 
-		$(".btn-warning").on("click", function() {
+		$(".btn-outline-secondary").on("click", function() {
 			formObj.attr("action", "/board/notice_modify_form");
 			formObj.attr("method", "get");
 			formObj.submit();
 		});
 
-		$(".btn-info").on("click", function() {
+		$(".btn-outline-success").on("click", function() {
 			formObj.attr("action", "/board/notice_delete");
 			formObj.submit();
 		});
 
-		$(".btn-primary").on("click", function() {
+		$(".btn-outline-primary").on("click", function() {
 			self.location = "/board/notice_list";
 		});
 	});
@@ -73,6 +74,7 @@
 
 				var replyer = $("#newReplyWriter").val();
 				var replytext = $("#newReplyText").val();
+				var userid = '${sessionScope.userid}';
 
 				$.ajax({
 					type : 'post',
@@ -172,10 +174,10 @@
 											.each(
 													function() {
 														str += "<li data-seq='"+this.seq+"' class='replyLi'>"
-																+ this.seq
-																+ ":"
+																+ this.replyer
+																+ "&nbsp;&nbsp;:&nbsp;&nbsp;"
 																+ this.replytext
-																+ "<button>MOD</button></li>";
+																+ "<button>수정하기</button></li>";
 													});
 
 									$("#replies").html(str);
@@ -230,19 +232,19 @@
 	</div>
 	
 	<div class="row">
-		<div class="container col-md-6 col-md-offset-6">
+		<div class="container col-md-7 col-md-offset-3">
 			<table class="table table-bordered" width=100%>
 				<thead>
 					<tr>
-						<th width="70%">제목 :${notice_content.title}</th>
-						<th>조회 :${notice_content.hits}</th>
+						<th width="70%">제목&nbsp;&nbsp;:&nbsp;&nbsp;${notice_content.title}</th>
+						<th>조회&nbsp;&nbsp;:&nbsp;&nbsp;${notice_content.hits}</th>
 					</tr>
 				</thead>
 
 				<thead>
 					<tr>
-						<th>이름 :${notice_content.writer}</th>
-						<th>날짜 :${notice_content.wdate}</th>
+						<th>이름&nbsp;&nbsp;:&nbsp;&nbsp;${notice_content.writer}</th>
+						<th>날짜&nbsp;&nbsp;:&nbsp;&nbsp;${notice_content.wdate}</th>
 					</tr>
 				</thead>
 				<tr>
@@ -254,35 +256,55 @@
 				<tr>
 					<th colspan=2>
 					<center>
-						<button type="button" class="btn btn-warning"  style="width: 150px;">수정</button>
-						<button type="button" class="btn btn-info"style="width: 150px; ">삭제</button>
-						<button type="button" class="btn btn-primary"style="width: 150px;">목록</button>
-				</center>
+						<button type="button" class="btn btn-outline-primary" style="width: 120px;">목록</button>
+						<c:if test="${'admin' eq sessionScope.userid}">
+						<button type="button" class="btn btn-outline-secondary" style="width: 120px;">수정</button>
+						<button type="button" class="btn btn-outline-success" style="width: 120px;">삭제</button>
+						</c:if>
+					</center>
 					</th>
 				</tr>
 
 				<tr>
-					<td colspan=2>REPLYER</td>
+					<td colspan=2><h6>댓글 작성자</h6></td>
 				<tr>
 				<tr>
-					<td colspan=2><input type='text' name='replyer'
-						id='newReplyWriter' size='60'></td>
+					<td colspan=2>
+					<c:if test="${null ne sessionScope.userid}">
+						<input type='text' class="form-control form-control" name='replyer' id='newReplyWriter' size='20' value="${sessionScope.userid}" readonly>
+					</c:if>
+					<c:if test="${null eq sessionScope.userid}">
+						<input type='text' class="form-control form-control" name='replyer' id='newReplyWriter' size='60' value="로그인 후 사용가능"readonly>
+					</c:if>
+					</td>
 				<tr>
 				<tr>
-					<td colspan=2>REPLY TEXT</td>
+					<td colspan=2><h6>댓글 내용</h6></td>
 				<tr>
 				<tr>
-					<td colspan=2><input type='text' name='replytext'
-						id='newReplyText' size='60'></td>
+					<td colspan=2>
+					<c:if test="${null ne sessionScope.userid}">
+					<input type='text' name='replytext' id='newReplyText' class="form-control form-control" size='60'>
+					</c:if>
+					<c:if test="${null eq sessionScope.userid}">
+					<input type='text' name='replytext' id='newReplyText' class="form-control form-control" size='60' readonly>
+					</c:if>
+					</td>
 				<tr>
+					<c:if test="${null ne sessionScope.userid}">
 				<tr>
-					<td colspan=2><button id="replyAddBtn">ADD REPLY</button></td>
+					<td colspan=2>
+					<center>
+					<button type="button" class="btn btn-outline-info" id="replyAddBtn" style="width: 120px;">작성 완료</button>
+					</center>
+					</td>
 				<tr>
+					</c:if>
 				<tr>
 					<td colspan=2><ul id="replies"></ul></td>
 				<tr>
 				<tr>
-					<td colspan=2><ul class='pagination'></ul></td>
+					<td colspan=2><center><ul class='pagination'></ul></center></td>
 				<tr>
 			</table>
 		</div>

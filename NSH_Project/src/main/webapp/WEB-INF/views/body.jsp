@@ -1,191 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<%-- 	<div class="container">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
+	<br>
+	<br>
+	<div class=container>
+		<div id="carouselExampleIndicators" class="carousel slide"
+			data-ride="carousel">
 			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="0"
+					class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 			</ol>
-
-			<!-- Wrapper for slides -->
-			<div class="carousel-inner">
-				<div class="item active">
-					<img hight="20"
-						src="${pageContext.request.contextPath}/resources/image/a.png"
-						alt="Chania">
-					<div class="carousel-caption">
-						<h3>Los Angeles</h3>
-						<p>LA is always so much fun!</p>
-					</div>
+			<div class="carousel-inner" role="listbox">
+				<div class="carousel-item active">
+					<img class="d-block img-fluid" width="100%" height="500"
+						src="/resources/image/라즈베리파이.JPG" alt="First slide">
 				</div>
-
-				<div class="item">
-					<img src="${pageContext.request.contextPath}/resources/image/a.png"
-						alt="Chicago">
-					<div class="carousel-caption">
-						<h3>Chicago</h3>
-						<p>Thank you, Chicago!</p>
-					</div>
-				</div>
-
-				<div class="item">
-					<img src="${pageContext.request.contextPath}/resources/image/a.png"
-						alt="New York">
-					<div class="carousel-caption">
-						<h3>New York</h3>
-						<p>We love the Big Apple!</p>
-					</div>
+				<div class="carousel-item">
+					<img class="d-block img-fluid" width="100%" height="500"
+						src="/resources/image/아두이노.JPG" alt="Second slide">
 				</div>
 			</div>
-
-			<!-- Left and right controls -->
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left"></span> <span
+			<a class="carousel-control-prev" href="#carouselExampleIndicators"
+				role="button" data-slide="prev"> <span
+				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
 				class="sr-only">Previous</span>
-			</a> <a class="right carousel-control" href="#myCarousel"
-				data-slide="next"> <span
-				class="glyphicon glyphicon-chevron-right"></span> <span
+			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+				role="button" data-slide="next"> <span
+				class="carousel-control-next-icon" aria-hidden="true"></span> <span
 				class="sr-only">Next</span>
 			</a>
 		</div>
 	</div>
-	<br><br><br>
-	<div class="container" style="border-bottom: 1px solid #C8C8C8">
-		<h4>BEST 상품</h4>
-	</div>
+
 	<br>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="${pageContext.request.contextPath}/resources/image/a.png">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>...</p>
-						<p>
-							<a href="#" class="btn btn-primary" role="button">Button</a> <a
-								href="#" class="btn btn-default" role="button">Button</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="${pageContext.request.contextPath}/resources/image/a.png">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>
-							<img src="#">
-						</p>
-						<p>
-							<a href="#" class="btn btn-primary" role="button">Button</a> <a
-								href="#" class="btn btn-default" role="button">Button</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="${pageContext.request.contextPath}/resources/image/a.png">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>...</p>
-						<p>
-							<a href="#" class="btn btn-primary" role="button">Button</a> <a
-								href="#" class="btn btn-default" role="button">Button</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="${pageContext.request.contextPath}/resources/image/a.png">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>...</p>
-						<p>
-							<a href="#" class="btn btn-primary" role="button">Button</a> <a
-								href="#" class="btn btn-default" role="button">Button</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<br><br><br><br><br>
-	<div class="container" style="border-bottom: 1px solid #C8C8C8">
-		<h4>NEW 상품</h4>
-	</div>
 	<br>
 
 	<div class="container">
+		<h6>NEW ITEM</h6>
+		<br>
 		<div class="row">
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="${pageContext.request.contextPath}/resources/image/a.png">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>...</p>
-						<p>
-							<a href="#" class="btn btn-primary" role="button">Button</a> <a
-								href="#" class="btn btn-default" role="button">Button</a>
-						</p>
+			<c:forEach var="item" items="${newitem}" varStatus="status">
+				<div class="col-sm-6 col-md-3">
+					<div class="thumbnail">
+						<img src="${item.p_img}" width="100%" height="100%" />
+						<div class="caption">
+							<center>
+								<p>${item.p_name}</p>
+								<p>${item.p_price}</p>
+							</center>
+							<p>
+								<a href="/product/content?seq=${item.seq}"
+									class="btn btn-primary" role="button" style="width: 100%;">구매하기</a>
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="${pageContext.request.contextPath}/resources/image/a.png">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>
-							<img src="#">
-						</p>
-						<p>
-							<a href="#" class="btn btn-primary" role="button">Button</a> <a
-								href="#" class="btn btn-default" role="button">Button</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="${pageContext.request.contextPath}/resources/image/a.png">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>...</p>
-						<p>
-							<a href="#" class="btn btn-primary" role="button">Button</a> <a
-								href="#" class="btn btn-default" role="button">Button</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail">
-					<img src="${pageContext.request.contextPath}/resources/image/a.png">
-					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>...</p>
-						<p>
-							<a href="#" class="btn btn-primary" role="button">Button</a> <a
-								href="#" class="btn btn-default" role="button">Button</a>
-						</p>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
-	<br><br><br> --%>
+	<br>
+	<br>
+
+	<div class="container">
+		<h6>HIT ITEM</h6>
+		<br>
+		<div class="row">
+			<c:forEach var="item" items="${hititem}" varStatus="status">
+				<div class="col-sm-6 col-md-3">
+					<div class="thumbnail">
+						<img src="${item.p_img}" width="100%" height="100%" />
+						<div class="caption">
+							<center>
+								<p>${item.p_name}</p>
+								<p>${item.p_price}</p>
+							</center>
+							<p>
+								<a href="/product/content?seq=${item.seq}"
+									class="btn btn-primary" role="button" style="width: 100%;">구매하기</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
 </body>
 </html>

@@ -82,4 +82,12 @@ public class ProductDAOImpl implements ProductDAO {
 	public void order_product(OrderProductVO vo) throws Exception{
 		sqlsession.insert(namespace + ".detail_order", vo);
 	}
+	
+	public List<ProductVO> newitem() throws Exception{
+		return sqlsession.selectList(namespace + ".newitem");
+	}
+
+	public List<ProductVO> hititem() throws Exception{
+		return sqlsession.selectList(namespace + ".hititem");
+	}
 }

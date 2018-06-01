@@ -77,6 +77,10 @@
 								<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#">마이페이지</a> 
 						<a class="dropdown-item" href="/product/selectcart?u_seq=${sessionScope.u_seq}">장바구니</a>
+						<c:if test="${null ne sessionScope.userid}">
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="/admin/manage">관리자 페이지</a> 
+						</c:if>
 				
 					</div></li>
 			</c:if>
@@ -84,56 +88,6 @@
 		</div>
 		</nav>
 	</div>
-	<%-- <!--메뉴-->
-	<div class="container">
-		<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/home">Phi Chai Sensor Mall</a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-
-					<li><a href="/board/notice_list">공지사항<span class="sr-only">(current)</span></a></li>
-					<li><a href="/product/list?p_category=arduino">아두이노</a></li>
-					<li><a href="#">라즈베리파이</a></li>
-					<li><a href="#">LED/LCD</a></li>
-				</ul>
-
-
-				<ul class="nav navbar-nav navbar-right">
-
-
-					<li><a href="/login_Form"><span
-							class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
-					<li><a href="/join/join_Form"><span
-							class="glyphicon glyphicon-user"></span> 회원가입</a></li>
-
-					<li><a href="#">${sessionScope.userid}님 환영합니다.</a></li>
-					<li><a href="/logout">로그아웃</a></li>
-
-
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid --> </nav>
-	</div>
-	<!--/메뉴-->
-	<br>
-	<br>
-	<br>
-	<br> --%>
 </body>
 </html>
 

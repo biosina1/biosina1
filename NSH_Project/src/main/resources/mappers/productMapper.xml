@@ -83,6 +83,7 @@
 		delete from cart_db where seq = #{seq}
 	</delete>
 
+	<!-- 주문 -->
 	<insert id="addorder">
 		insert into
 		order_db(u_seq,price,name,phone,addrcode,addr,addr2,message,payment,orderNum)
@@ -94,4 +95,14 @@
 		orderp_db(u_seq,p_seq,orderNum,order_count)
 		values(#{u_seq},#{p_seq},#{orderNum},#{order_count})
 	</insert>
+
+	<!-- 뉴, 힛 아이템 -->
+	<select id="hititem"
+		resultType="com.javalec.sangho.vo.ProductVO">
+		select *from product_db order by p_hit desc limit 0,4;
+		</select>
+	<select id="newitem"
+		resultType="com.javalec.sangho.vo.ProductVO">
+		select *from product_db order by seq desc limit 0,4;
+		</select>
 </mapper>

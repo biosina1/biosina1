@@ -144,7 +144,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/addorder", method = RequestMethod.POST)
-	public String addorder(HttpServletResponse response, HttpServletRequest request, OrderVO vo, Model model,
+	public void addorder(HttpServletResponse response, HttpServletRequest request, OrderVO vo, Model model,
 			HttpSession session) throws Exception {
 		PrintWriter out = response.getWriter();
 
@@ -173,8 +173,7 @@ public class ProductController {
 		
 		out.print("<script>");
 		out.print("alert('Order Success');");
+		out.print("location.href='/home';");
 		out.print("</script>");
-
-		return "redirect:/home";
 	}
 }

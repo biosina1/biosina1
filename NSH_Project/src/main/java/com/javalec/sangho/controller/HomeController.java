@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javalec.sangho.service.MemberService;
+import com.javalec.sangho.service.ProductService;
 import com.javalec.sangho.vo.LoginVO;
 
 /**
@@ -31,14 +32,15 @@ public class HomeController {
 
 	@Inject
 	MemberService service;
+	@Inject
+	ProductService pservice;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(HttpServletRequest request, Locale locale, Model model) throws Exception {
+	public String home(Locale locale, Model model) throws Exception {
+		model.addAttribute("newitem", pservice.newitem());
+		model.addAttribute("hititem", pservice.hititem());
 		return "body";
 	}
 

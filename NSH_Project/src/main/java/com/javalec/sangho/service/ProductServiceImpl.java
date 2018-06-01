@@ -73,4 +73,13 @@ public class ProductServiceImpl implements ProductService {
 	public void order_product(OrderProductVO vo) throws Exception{
 		dao.order_product(vo);
 	}
+	
+	public List<ProductVO> newitem() throws Exception{
+		return dao.newitem();
+	}
+
+	public List<ProductVO> hititem() throws Exception{
+		return dao.hititem();	
+		
+	}
 }
