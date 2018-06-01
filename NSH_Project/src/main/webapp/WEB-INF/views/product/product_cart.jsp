@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -118,7 +119,7 @@
 	
 		function submitbtn(){
 			$("#price").val(totalprice);
-			$("#orderForm").submit();
+			$(".orderForm").submit();
 		}
 	</script>
 	<br>
@@ -131,46 +132,47 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="card-body">
-				<c:forEach var="item" items="${list}" varStatus="status">
-					<!-- PRODUCT -->
-					<div class="row">
-						<hr>
-						<div class="col-12 col-sm-12 col-md-2 text-center">
-							<img class="img-responsive" src="${item.p_img}" alt="prewiew"
-								width="120" height="80">
-						</div>
-						<div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
-							<h4 class="product-name">상품 명</h4>
-							<h4>
-								<small>${item.p_name}</small>
-							</h4>
-						</div>
-						<div
-							class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-							<div class="col-3 col-sm-3 col-md-6 text-md-right"
-								style="padding-top: 5px">
-								<h6 id="p_${status.index}">${item.p_price}</h6>
+				<form id="updateForm" name='updateForm' method="post">
+					<c:forEach var="item" items="${list}" varStatus="status">
+						<!-- PRODUCT -->
+						<div class="row">
+							<hr>
+							<div class="col-12 col-sm-12 col-md-2 text-center">
+								<img class="img-responsive" src="${item.p_img}" alt="prewiew"
+									width="120" height="80">
 							</div>
-							<div class="col-4 col-sm-4 col-md-4">
-								<div class="quantity">
-									<form id="updateForm" name='updateForm' method="post">
+							<div
+								class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+								<h4 class="product-name">상품 명</h4>
+								<h4>
+									<small>${item.p_name}</small>
+								</h4>
+							</div>
+							<div
+								class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+								<div class="col-3 col-sm-3 col-md-6 text-md-right"
+									style="padding-top: 5px">
+									<h6 id="p_${status.index}">${item.p_price}</h6>
+								</div>
+								<div class="col-4 col-sm-4 col-md-4">
+									<div class="quantity">
 										<input type="number" step="1" max="99" min="1"
 											value="${item.count}" title="Qty" class="qty" size="4"
 											id="count_${status.index}"> <input type="hidden"
 											name="seq" value="" id="seqnum" /> <input type="hidden"
 											name="count" value="" id="count" />
+									</div>
+								</div>
+								<div class="col-2 col-sm-2 col-md-2 text-right">
+									<input type="button" value="수정"
+										onclick="setbtn(1,${item.seq},${status.index})"> <input
+										type="button" value="삭제" onclick="setbtn(2,${item.seq})">
 								</div>
 							</div>
-							<div class="col-2 col-sm-2 col-md-2 text-right">
-								<input type="button" value="수정"
-									onclick="setbtn(1,${item.seq},${status.index})"> <input
-									type="button" value="삭제" onclick="setbtn(2,${item.seq})">
-								</form>
-							</div>
 						</div>
-					</div>
-					<hr>
-				</c:forEach>
+						<hr>
+					</c:forEach>
+				</form>
 				<!-- END PRODUCT -->
 			</div>
 			<div class="card-footer">
@@ -183,14 +185,26 @@
 
 
 
+
+
 			<div class="card-header bg-dark text-light">
 				<i class="fa fa-shopping-cart" aria-hidden="true"></i> 배송 정보
 				<div class="clearfix"></div>
 			</div>
 			<div class="card-body">
 				<div class="card-body">
-					<form action="/product/addorder" method="post" id="orderForm"
+					<form action="/product/addorder" method="post" class="orderForm"
 						name="orderForm">
+
+						<c:forEach var="item" items="${list}" varStatus="status">
+							<input type="hidden" name="p_seq" value="${item.p_seq}">
+							<input type="hidden" name="count" value="${item.count}">
+							2.<c:out value="${item.p_seq}"></c:out><br>
+							3.<c:out value="${item.count}"></c:out><br>
+						</c:forEach>
+
+
+
 						<div class="row">
 							<div class="col-12 col-sm-12 col-md-2 text-center">성명</div>
 							<div
@@ -212,8 +226,8 @@
 							<div
 								class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
 								<input type="text" value="${user.addrcode}" size="20"
-									id="addrcode" name="addrcode" readonly><input type="button"
-									 value="우편번호 검색"
+									id="addrcode" name="addrcode" readonly><input
+									type="button" value="우편번호 검색"
 									onclick="sample6_execDaumPostcode()">
 							</div>
 						</div>
@@ -252,8 +266,7 @@
 									<option value="카드결제">카드 결제</option>
 									<option value="무통장 입금">무통장 입금</option>
 									<option value="무통장 입금">휴대폰 결제</option>
-								</select>
-								<input type="hidden" name="price" id="price">
+								</select> <input type="hidden" name="price" id="price">
 							</div>
 						</div>
 					</form>

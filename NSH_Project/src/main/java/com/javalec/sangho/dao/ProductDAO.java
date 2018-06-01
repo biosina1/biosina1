@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.javalec.sangho.vo.CartListVO;
 import com.javalec.sangho.vo.CartVO;
+import com.javalec.sangho.vo.OrderProductVO;
 import com.javalec.sangho.vo.OrderVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
@@ -22,7 +23,7 @@ public interface ProductDAO {
 	public int countPage(String p_category) throws Exception;
 
 	public ProductVO content(int seq) throws Exception;
-	
+
 	public void hitup(int seq) throws Exception;
 
 	// Cart
@@ -33,7 +34,9 @@ public interface ProductDAO {
 	public void deleteCart(int seq) throws Exception;
 
 	public List<CartListVO> selectCart(int u_seq) throws Exception;
-	
+
 	// Order
 	public void addorder(OrderVO vo) throws Exception;
+
+	public void order_product(OrderProductVO vo) throws Exception;
 }

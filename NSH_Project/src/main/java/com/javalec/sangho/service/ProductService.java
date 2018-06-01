@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.javalec.sangho.vo.CartListVO;
 import com.javalec.sangho.vo.CartVO;
+import com.javalec.sangho.vo.OrderProductVO;
 import com.javalec.sangho.vo.OrderVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
@@ -36,4 +37,6 @@ public interface ProductService {
 	
 	//order
 	public void addorder(OrderVO vo) throws Exception;
+
+	public void order_product(OrderProductVO vo) throws Exception;
 }

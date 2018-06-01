@@ -59,12 +59,13 @@
 	<!-- 장바구니 -->
 	<select id="selectCart"
 		resultType="com.javalec.sangho.vo.CartListVO">
-		select c.seq, p.p_name, p.p_img, p.p_price, c.cdate,
+		select c.seq, p.seq as p_seq, p.p_name, p.p_img, p.p_price,
+		c.cdate,
 		c.count
 		from
 		cart_db as c,
 		product_db as p
-		where c.u_seq = #{u_seq} and
+		where c.u_seq = 1 and
 		c.p_seq=p.seq;
 	</select>
 
@@ -84,7 +85,13 @@
 
 	<insert id="addorder">
 		insert into
-		order_db(u_seq,price,name,phone,addrcode,addr,addr2,message,payment)
-		values(#{u_seq},#{price},#{name},#{phone},#{addrcode},#{addr},#{addr2},#{message},#{payment})
+		order_db(u_seq,price,name,phone,addrcode,addr,addr2,message,payment,orderNum)
+		values(#{u_seq},#{price},#{name},#{phone},#{addrcode},#{addr},#{addr2},#{message},#{payment},#{orderNum})
+	</insert>
+
+	<insert id="detail_order">
+		insert into
+		orderp_db(u_seq,p_seq,orderNum,order_count)
+		values(#{u_seq},#{p_seq},#{orderNum},#{order_count})
 	</insert>
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.javalec.sangho.vo.CartListVO;
 import com.javalec.sangho.vo.CartVO;
+import com.javalec.sangho.vo.OrderProductVO;
 import com.javalec.sangho.vo.OrderVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
@@ -55,7 +56,7 @@ public class ProductDAOImpl implements ProductDAO {
 		sqlsession.update(namespace + ".hitup", seq);
 	}
 
-	// cart
+	// 장바구니
 
 	public void insertCart(CartVO vo) throws Exception {
 		sqlsession.insert(namespace + ".insertCart", vo);
@@ -73,8 +74,12 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlsession.selectList(namespace + ".selectCart", u_seq);
 	}
 	
-	// order
+	// 주문
 	public void addorder(OrderVO vo) throws Exception{
 		sqlsession.insert(namespace + ".addorder", vo);
+	}
+	
+	public void order_product(OrderProductVO vo) throws Exception{
+		sqlsession.insert(namespace + ".detail_order", vo);
 	}
 }

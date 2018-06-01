@@ -4,11 +4,20 @@ import java.sql.Date;
 
 public class CartListVO {
 	private int seq;
+	private int p_seq;
 	private String p_name;
 	private String p_img;
 	private int p_price;
 	private Date date;
 	private int count;
+
+	public int getP_seq() {
+		return p_seq;
+	}
+
+	public void setP_seq(int p_seq) {
+		this.p_seq = p_seq;
+	}
 
 	public String getP_img() {
 		return p_img;

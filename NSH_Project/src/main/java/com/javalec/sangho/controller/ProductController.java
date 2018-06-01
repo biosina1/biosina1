@@ -2,6 +2,8 @@ package com.javalec.sangho.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +33,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.javalec.sangho.service.MemberService;
 import com.javalec.sangho.service.ProductService;
 import com.javalec.sangho.service.ReplyService;
+import com.javalec.sangho.vo.CartListVO;
 import com.javalec.sangho.vo.CartVO;
+import com.javalec.sangho.vo.OrderProductVO;
 import com.javalec.sangho.vo.OrderVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
@@ -106,6 +110,7 @@ public class ProductController {
 		return "product/product_content";
 	}
 
+	// 장바구니
 	@RequestMapping(value = "/insertcart", method = RequestMethod.POST)
 	public void insertcart(CartVO vo, Model model, HttpServletResponse response) throws Exception {
 		service.insertCart(vo);
@@ -139,11 +144,37 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/addorder", method = RequestMethod.POST)
-	public String addorder(OrderVO vo, Model model, HttpSession session) throws Exception {
-		System.out.println(vo.getAddrcode());
+	public String addorder(HttpServletResponse response, HttpServletRequest request, OrderVO vo, Model model,
+			HttpSession session) throws Exception {
+		PrintWriter out = response.getWriter();
+
+		// 주문번호 = 현재시간
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyyMMddHHmmss", java.util.Locale.KOREA);
+		Long orderNum = Long.parseLong(formatter.format(new java.util.Date()));
+
 		int u_seq = (int) session.getAttribute("u_seq");
 		vo.setU_seq(u_seq);
+		vo.setOrderNum(orderNum);
 		service.addorder(vo);
-		return "product/product_cart";
+
+		
+		String[] p_seq = request.getParameterValues("p_seq");
+		String[] count = request.getParameterValues("count");
+		
+		OrderProductVO ordervo[] = new OrderProductVO[p_seq.length];
+		for (int i = 0; i < p_seq.length; i++) {
+			ordervo[i] = new OrderProductVO();
+			ordervo[i].setU_seq(u_seq);
+			ordervo[i].setP_seq(Integer.parseInt(p_seq[i]));
+			ordervo[i].setOrderNum(orderNum);
+			ordervo[i].setOrder_count(Integer.parseInt(count[i]));
+			service.order_product(ordervo[i]);
+		}
+		
+		out.print("<script>");
+		out.print("alert('Order Success');");
+		out.print("</script>");
+
+		return "redirect:/home";
 	}
 }

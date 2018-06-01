@@ -4,9 +4,10 @@ import java.sql.Date;
 
 public class OrderVO {
 
-	private int seq;
+	private Long seq;
 	private int u_seq;
 	private int price;
+	private long orderNum;
 	private Date orderdate;
 	private String status;
 	private String name;
@@ -17,6 +18,14 @@ public class OrderVO {
 	private String message;
 	private String payment;
 
+	public long getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(long orderNum) {
+		this.orderNum = orderNum;
+	}
+
 	public String getPayment() {
 		return payment;
 	}
@@ -25,11 +34,11 @@ public class OrderVO {
 		this.payment = payment;
 	}
 
-	public int getSeq() {
+	public Long getSeq() {
 		return seq;
 	}
 
-	public void setSeq(int seq) {
+	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 
