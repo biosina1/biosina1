@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +17,13 @@
 </style>
 </head>
 <body>
-
+	<script>
+		$("document").ready(function() {
+			var a = "${fn:length(length)}";
+			alert("주문한 내역이 존재하지 않습니다.");
+			history.back();
+		});
+	</script>
 	<div class="container" id="notice">
 		<br> <br>
 		<h4>
@@ -25,8 +32,8 @@
 			</center>
 		</h4>
 	</div>
-
-	<div class="container">
+	<c:set var="length" value="${order}" />
+	<div class="container" id="orderlist">
 		<c:forEach var="item" items="${order}" varStatus="status">
 			<c:set var="orderNum" value="${item.orderNum}" />
 			<table class="table">

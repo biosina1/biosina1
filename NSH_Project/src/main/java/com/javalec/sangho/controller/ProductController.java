@@ -62,8 +62,8 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(HttpServletRequest request, ProductVO vo, MultipartFile file, MultipartFile file2, Model model)
-			throws Exception {
+	public String insert(HttpServletRequest request, ProductVO vo, @RequestParam("file") MultipartFile file,
+			@RequestParam("file2") MultipartFile file2, Model model) throws Exception {
 
 		String attach_path = "/resources/image/";
 		String p_img = attach_path + file.getOriginalFilename();
@@ -85,7 +85,7 @@ public class ProductController {
 		File target = new File(path, savedName);
 		File target2 = new File(path, savedName2);
 		FileCopyUtils.copy(file.getBytes(), target);
-		FileCopyUtils.copy(file.getBytes(), target2);
+		FileCopyUtils.copy(file2.getBytes(), target2);
 
 		return "redirect:/product/form";
 	}
@@ -118,7 +118,7 @@ public class ProductController {
 			vo.setP_img2(p_img2);
 			String savedName2 = file2.getOriginalFilename();
 			File target2 = new File(path, savedName2);
-			FileCopyUtils.copy(file.getBytes(), target2);
+			FileCopyUtils.copy(file2.getBytes(), target2);
 		}
 
 		service.update(vo);

@@ -95,8 +95,13 @@
 				$("#p_" + i).text(price2 + " 원");
 			}
 
-			$("#totalprice").text(totalprice.toLocaleString() + " 원");
-			$("#totalprice2").text(totalprice.toLocaleString() + " 원");
+			if(totalprice == 0){
+				$("#totalprice").text("등록한 상품이 없습니다.");
+				$('#shippinginfo').hide();
+			}else{
+				$("#totalprice").text("총 가격 : " + totalprice.toLocaleString() + " 원");
+			}
+			
 		});
 
 		function setbtn(num,seq,count) {
@@ -178,15 +183,15 @@
 			<div class="card-footer">
 				<div class="pull-right" style="margin: 10px">
 					<div class="pull-right" style="margin: 5px">
-						총 가격 : <b id="totalprice"></b>&nbsp;&nbsp;&nbsp;
+						<b id="totalprice"></b>&nbsp;&nbsp;&nbsp;
 					</div>
 				</div>
 			</div>
+		</div>
 
 
 
-
-
+		<div class="container" id="shippinginfo">
 			<div class="card-header bg-dark text-light">
 				<i class="fa fa-shopping-cart" aria-hidden="true"></i> 배송 정보
 				<div class="clearfix"></div>
@@ -272,7 +277,7 @@
 			</div>
 			<div class="card-footer">
 				<center>
-					<button type="button" class="btn btn-outline-info"
+					<button type="button" class="btn btn-outline-info" id="submitbtn"
 						style="width: 150px" onclick="submitbtn()">구매하기</button>
 				</center>
 

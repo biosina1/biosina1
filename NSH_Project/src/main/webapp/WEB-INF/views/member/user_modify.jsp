@@ -49,10 +49,6 @@
 	margin-bottom: 50px;
 }
 
-#userid {
-	width: 180px;
-}
-
 #addrcode {
 	width: 222px;
 }
@@ -143,8 +139,8 @@ p {
 									role="form" style="display: block;">
 
 									<input type="hidden" name="seq" value="${user.seq}">
-									<div class="form-group" style="float: left;">
-										<input type="text" name="userid" id="userid" tabindex="1"
+									<div class="form-group">
+										<input type="text" name="userid" id="userid" tabindex="2"
 											class="form-control" oninput="checkId()"
 											value="${user.userid}" readonly>
 									</div>

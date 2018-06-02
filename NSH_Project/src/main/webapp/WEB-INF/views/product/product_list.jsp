@@ -33,7 +33,6 @@
 						<div class="caption">
 							<center>
 								<p>${item.p_name}</p>
-								<p>${item.p_price}</p>
 							</center>
 							<p>
 								<a href="/product/content?seq=${item.seq}"

@@ -72,11 +72,15 @@ img {
 							style="width: 150px" onclick="click3()">장바구니</button>
 						<button type="button" class="btn btn-outline-primary"
 							style="width: 150px" onclick="click2()">목록으로</button>
-						<br><br>
-						<button type="button" class="btn btn-outline-danger"
-							style="width: 150px" onclick="click4(1)">수정</button>
-						<button type="button" class="btn btn-outline-danger"
-							style="width: 150px" onclick="click4(2)">삭제</button>
+
+						<c:if test="${'admin' eq sessionScope.userid}">
+							<br>
+							<br>
+							<button type="button" class="btn btn-outline-danger"
+								style="width: 150px" onclick="click4(1)">수정</button>
+							<button type="button" class="btn btn-outline-danger"
+								style="width: 150px" onclick="click4(2)">삭제</button>
+						</c:if>
 					</center>
 					<hr>
 				</form>
@@ -94,9 +98,9 @@ img {
 	<div class="container">
 		<center>
 			<img src="${product.p_img2}" width="80%" height="100%"> <br>
-			<br> <br> <img src="${product.p_img2}" width="80%"
+			<br> <br> <img src="/resources/image/배송안내.JPG" width="80%"
 				height="100%">
 		</center>
-	<div>
+		<div>
 </body>
 </html>
