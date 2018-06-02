@@ -17,7 +17,7 @@
 		p_content)
 		values(#{p_category},#{p_name},#{p_price},#{p_count},#{p_img},#{p_img2},#{p_content})
 	</insert>
-
+	
 	<update id="update">
 		update product_db set
 		p_category=#{p_category},
@@ -65,7 +65,8 @@
 		from
 		cart_db as c,
 		product_db as p
-		where c.u_seq = 1 and
+		where c.u_seq =
+		#{u_seq} and
 		c.p_seq=p.seq;
 	</select>
 
@@ -96,13 +97,27 @@
 		values(#{u_seq},#{p_seq},#{orderNum},#{order_count})
 	</insert>
 
+	<!-- 주문조회 -->
+	<select id="orderList"
+		resultType="com.javalec.sangho.vo.OrderVO">
+		select *from order_db where u_seq =
+		#{u_seq}
+	</select>
+
+	<select id="orderpList"
+		resultType="com.javalec.sangho.vo.OrderpVO">
+		select a.orderNum,b.seq as p_seq,p_img,b.p_name,order_count
+		from orderp_db
+		as a , product_db as b where a.u_seq = #{u_seq} and
+		a.p_seq = b.seq;
+	</select>
 	<!-- 뉴, 힛 아이템 -->
 	<select id="hititem"
 		resultType="com.javalec.sangho.vo.ProductVO">
 		select *from product_db order by p_hit desc limit 0,4;
-		</select>
+	</select>
 	<select id="newitem"
 		resultType="com.javalec.sangho.vo.ProductVO">
 		select *from product_db order by seq desc limit 0,4;
-		</select>
+	</select>
 </mapper>

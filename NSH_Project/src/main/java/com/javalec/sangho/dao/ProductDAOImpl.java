@@ -13,6 +13,7 @@ import com.javalec.sangho.vo.CartListVO;
 import com.javalec.sangho.vo.CartVO;
 import com.javalec.sangho.vo.OrderProductVO;
 import com.javalec.sangho.vo.OrderVO;
+import com.javalec.sangho.vo.OrderpVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
 import com.javalec.sangho.vo.ProductVO;
@@ -81,6 +82,14 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	public void order_product(OrderProductVO vo) throws Exception{
 		sqlsession.insert(namespace + ".detail_order", vo);
+	}
+	
+	public List<OrderVO> order(int u_seq) throws Exception{
+		return sqlsession.selectList(namespace + ".orderList", u_seq);
+	}
+
+	public List<OrderpVO> orderp(int u_seq) throws Exception{
+		return sqlsession.selectList(namespace + ".orderpList", u_seq);
 	}
 	
 	public List<ProductVO> newitem() throws Exception{

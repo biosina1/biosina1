@@ -8,6 +8,7 @@ import com.javalec.sangho.vo.CartListVO;
 import com.javalec.sangho.vo.CartVO;
 import com.javalec.sangho.vo.OrderProductVO;
 import com.javalec.sangho.vo.OrderVO;
+import com.javalec.sangho.vo.OrderpVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
 import com.javalec.sangho.vo.ProductVO;
@@ -39,6 +40,10 @@ public interface ProductService {
 	public void addorder(OrderVO vo) throws Exception;
 
 	public void order_product(OrderProductVO vo) throws Exception;
+	
+	public List<OrderVO> order(int u_seq) throws Exception;
+
+	public List<OrderpVO> orderp(int u_seq) throws Exception;
 	
 	public List<ProductVO> newitem() throws Exception;
 

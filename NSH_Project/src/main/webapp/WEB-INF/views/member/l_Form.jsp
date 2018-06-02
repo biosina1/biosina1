@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <style>
 .panel-login>.panel-heading a {
 	text-decoration: none;
@@ -51,9 +52,7 @@
 </style>
 </head>
 <body>
-	<br>
-	<br>
-	<br>
+
 	<script type="text/javascript">
 		function loginCheck() {
 
@@ -73,6 +72,9 @@
 		}
 	</script>
 
+	<br>
+	<br>
+	<br>
 	<div class="container ">
 		<center>
 			<div class="row justify-content-center align-items-center">
@@ -89,7 +91,7 @@
 						<div class="panel-body">
 							<div class="row justify-content-center align-items-center">
 								<div class="col-lg-12">
-									<form id="register-form" action="/login" method="post"
+									<form id="register-form" action="/member/login" method="post"
 										role="form" style="display: block;">
 										<div class="form-group">
 											<input type="text" name="userid" id="userid" tabindex="1"

@@ -77,7 +77,7 @@ p {
 				$('#userid').on('input', function() {
 					$.ajax({
 						type : 'POST',
-						url : '/join/checkId',
+						url : '/member/checkId',
 						data : {
 							"userid" : $('#userid').val()
 						},
@@ -189,7 +189,7 @@ p {
 					<div class="panel-body">
 						<div class="row justify-content-center align-items-center">
 							<div class="col-md-12">
-								<form id="register-form" action="/join/insert" method="post"
+								<form id="register-form" action="/member/insert" method="post"
 									role="form" style="display: block;">
 
 									<div class="form-group" style="float: left;">

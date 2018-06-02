@@ -11,6 +11,7 @@ import com.javalec.sangho.vo.CartListVO;
 import com.javalec.sangho.vo.CartVO;
 import com.javalec.sangho.vo.OrderProductVO;
 import com.javalec.sangho.vo.OrderVO;
+import com.javalec.sangho.vo.OrderpVO;
 import com.javalec.sangho.vo.PageMakerVO;
 import com.javalec.sangho.vo.PageVO;
 import com.javalec.sangho.vo.ProductVO;
@@ -45,9 +46,10 @@ public class ProductServiceImpl implements ProductService {
 		return dao.content(seq);
 	}
 
-	public void hitup(int seq) throws Exception{
+	public void hitup(int seq) throws Exception {
 		dao.hitup(seq);
 	}
+
 	// 장바구니
 	public void insertCart(CartVO vo) throws Exception {
 		dao.insertCart(vo);
@@ -64,22 +66,30 @@ public class ProductServiceImpl implements ProductService {
 	public List<CartListVO> selectCart(int u_seq) throws Exception {
 		return dao.selectCart(u_seq);
 	}
-	
-	//주문
-	public void addorder(OrderVO vo) throws Exception{
+
+	// 주문
+	public void addorder(OrderVO vo) throws Exception {
 		dao.addorder(vo);
 	}
-	
-	public void order_product(OrderProductVO vo) throws Exception{
+
+	public void order_product(OrderProductVO vo) throws Exception {
 		dao.order_product(vo);
 	}
-	
-	public List<ProductVO> newitem() throws Exception{
+
+	public List<OrderVO> order(int u_seq) throws Exception {
+		return dao.order(u_seq);
+	}
+
+	public List<OrderpVO> orderp(int u_seq) throws Exception {
+		return dao.orderp(u_seq);
+	}
+
+	public List<ProductVO> newitem() throws Exception {
 		return dao.newitem();
 	}
 
-	public List<ProductVO> hititem() throws Exception{
-		return dao.hititem();	
-		
+	public List<ProductVO> hititem() throws Exception {
+		return dao.hititem();
+
 	}
 }

@@ -199,8 +199,6 @@
 						<c:forEach var="item" items="${list}" varStatus="status">
 							<input type="hidden" name="p_seq" value="${item.p_seq}">
 							<input type="hidden" name="count" value="${item.count}">
-							2.<c:out value="${item.p_seq}"></c:out><br>
-							3.<c:out value="${item.count}"></c:out><br>
 						</c:forEach>
 
 

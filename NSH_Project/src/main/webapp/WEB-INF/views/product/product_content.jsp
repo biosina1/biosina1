@@ -12,29 +12,36 @@
 	rel="stylesheet">
 <title>Insert title here</title>
 <style>
-
 img {
 	max-width: 100%;
 }
-
 </style>
 </head>
 <body>
-<script>
-function click3(){
-	 var count = $("#count").val();
-	 if(count == null){
-		alert("수량을 알맞게 입력하세요.");
-	 }
-	 
-	 else{
-		document.getElementById("myform").submit();
-	 } 
-}
-function click2(){
-	location.href="http://localhost:8080/home";
-}
-</script>
+	<script>
+		function click3() {
+			var count = $("#count").val();
+			if (count == null) {
+				alert("수량을 알맞게 입력하세요.");
+			}
+
+			else {
+				document.getElementById("myform").submit();
+			}
+		}
+		function click2() {
+			location.href = "http://localhost:8090/home";
+		}
+		function click4(num) {
+			if (num == 1) {
+				$("#modForm").attr("action", "/product/modify");
+				$("#modForm").submit();
+			} else {
+				$("#modForm").attr("action", "/product/delete");
+				$("#modForm").submit();
+			}
+		}
+	</script>
 	<br>
 	<br>
 	<br>
@@ -55,28 +62,41 @@ function click2(){
 				&emsp;&emsp;&emsp;&emsp;가격&nbsp;&nbsp;:&nbsp;${product.p_price}
 				<hr>
 				<form action="/product/insertcart" method="post" id="myform">
-				&emsp;&emsp;&emsp;&emsp;수량&nbsp;:&nbsp;
-					<input type="number" name="count" id="count" value=1 min="1">
-					<input type="hidden" name="p_seq" value="${product.seq}">
-					<input type="hidden" name="u_seq" value="${sessionScope.u_seq}">
-				<hr>
-				<center>
-					<button type="button" class="btn btn-outline-info" style="width:150px" onclick="click3()">장바구니</button>
-					<button type="button" class="btn btn-outline-primary" style="width:150px" onclick="click2()">목록으로</button>
-				</center>
-				<hr>
+					&emsp;&emsp;&emsp;&emsp;수량&nbsp;:&nbsp; <input type="number"
+						name="count" id="count" value=1 min="1"> <input
+						type="hidden" name="p_seq" value="${product.seq}"> <input
+						type="hidden" name="u_seq" value="${sessionScope.u_seq}">
+					<hr>
+					<center>
+						<button type="button" class="btn btn-outline-info"
+							style="width: 150px" onclick="click3()">장바구니</button>
+						<button type="button" class="btn btn-outline-primary"
+							style="width: 150px" onclick="click2()">목록으로</button>
+						<br><br>
+						<button type="button" class="btn btn-outline-danger"
+							style="width: 150px" onclick="click4(1)">수정</button>
+						<button type="button" class="btn btn-outline-danger"
+							style="width: 150px" onclick="click4(2)">삭제</button>
+					</center>
+					<hr>
 				</form>
 			</div>
 		</div>
 	</div>
-	
-	<br><br><br><br><br>
+	<form id="modForm">
+		<input type="hidden" value="${product.seq}" name="seq">
+	</form>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="container">
-	<center>
-	<img src="${product.p_img2}" width="80%" height="100%">
-	<br><br><br>
-	<img src="${product.p_img2}" width="80%" height="100%">
-	</center>
+		<center>
+			<img src="${product.p_img2}" width="80%" height="100%"> <br>
+			<br> <br> <img src="${product.p_img2}" width="80%"
+				height="100%">
+		</center>
 	<div>
 </body>
 </html>

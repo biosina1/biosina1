@@ -43,43 +43,4 @@ public class HomeController {
 		model.addAttribute("hititem", pservice.hititem());
 		return "body";
 	}
-
-	@RequestMapping(value = "/login_Form", method = RequestMethod.GET)
-	public String login_Form(Locale locale, Model model) throws Exception {
-		return "join_login/login_Form";
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpSession session, LoginVO vo, HttpServletResponse response) throws Exception {
-		String returnURL = "";
-		PrintWriter writer = response.getWriter();
-
-		System.out.println(vo.getUserid());
-		System.out.println(vo.getUserpw());
-
-		int result = service.checkLogin(vo);
-
-		if (result != 0) {
-			session.setAttribute("userid", vo.getUserid());
-			session.setAttribute("u_seq", result);
-			returnURL = "redirect:/home";
-		} else {
-			writer.println("<script>alert(\"존재하지 않는 회원압니다.\");</script>");
-			returnURL = "redirect:/login_Form";
-		}
-
-		return returnURL;
-	}
-
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session, HttpServletResponse response) throws Exception {
-		session.removeAttribute("userid");
-		return "redirect:/home";
-
-	}
-
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String ajaxTest() throws Exception {
-		return "test";
-	}
 }

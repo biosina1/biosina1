@@ -56,15 +56,14 @@
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item "><a class="nav-link" href="/product/list?p_category=arduino">&nbsp;&nbsp;아두이노&nbsp;&nbsp;</a></li>
-				<li class="nav-item "><a class="nav-link" href="/product/list?p_category=arduino">&nbsp;&nbsp;라즈베리파이&nbsp;&nbsp;</a></li>
-				<li class="nav-item "><a class="nav-link" href="#">&nbsp;&nbsp;라즈베리파이&nbsp;&nbsp;</a></li>
-				<li class="nav-item "><a class="nav-link" href="#">&nbsp;&nbsp;센서&nbsp;&nbsp;</a></li>
+				<li class="nav-item "><a class="nav-link" href="/product/list?p_category=raspberrypi">&nbsp;&nbsp;라즈베리파이&nbsp;&nbsp;</a></li>
+				<li class="nav-item "><a class="nav-link" href="/product/list?p_category=sensor">&nbsp;&nbsp;센서&nbsp;&nbsp;</a></li>
 
 			</ul>
 			<ul class="navbar-nav">
 			<c:if test="${empty sessionScope.userid}">
-				<li class="nav-item nav-right"><a class="nav-link" href="/login_Form">&nbsp;&nbsp;&nbsp;&nbsp;로그인&nbsp;&nbsp;&nbsp;&nbsp;</a>
-				<li class="nav-item nav-right"><a class="nav-link" href="/join/join_Form">회원가입</a>
+				<li class="nav-item nav-right"><a class="nav-link" href="/member/login_Form">&nbsp;&nbsp;&nbsp;&nbsp;로그인&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<li class="nav-item nav-right"><a class="nav-link" href="/member/join_Form">회원가입</a>
 				</li>
 			</c:if>
 			<c:if test="${!empty sessionScope.userid}">
@@ -73,11 +72,12 @@
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> ${sessionScope.userid}님 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="/logout">로그아웃</a> 
+					<a class="dropdown-item" href="/member/logout">로그아웃</a> 
 								<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">마이페이지</a> 
+						<a class="dropdown-item" href="/member/modifyform">회원정보수정</a> 
 						<a class="dropdown-item" href="/product/selectcart?u_seq=${sessionScope.u_seq}">장바구니</a>
-						<c:if test="${null ne sessionScope.userid}">
+						<a class="dropdown-item" href="/product/orderlist">주문정보</a>
+						<c:if test="${'admin' eq sessionScope.userid}">
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="/admin/manage">관리자 페이지</a> 
 						</c:if>

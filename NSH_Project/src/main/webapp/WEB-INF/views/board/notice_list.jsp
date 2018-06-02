@@ -18,6 +18,8 @@
 </head>
 
 <body>
+
+
 	<div class="container" id="notice">
 		<br> <br> <br>
 		<h4>
@@ -28,20 +30,10 @@
 	</div>
 
 	<div class="container">
+	
+
 		<table class="table table-striped" style="text-align: center;">
 			<thead>
-				<%-- <tr>
-					<th colspan=4 align="center">
-					<select name="searchType">
-						<option value = "n" <c:out value="${cri.searchType == null? 'selected' : ''}"/>>---------</option>
-						<option value = "t" <c:out value="${cri.searchType eq 't'? 'selected' : ''}"/>>제목</option>
-						<option value = "c" <c:out value="${cri.searchType eq 'c'? 'selected' : ''}"/>>내용</option>
-						<option value = "w" <c:out value="${cri.searchType eq 'w'? 'selected' : ''}"/>>작성자</option>
-						<input type="text" name="keyword" id="keyword" value="${cri.keyword }">
-						<button id="searchBtn">검색</button>
-					</select>
-					</th> --%>
-				</tr>
 				<tr>
 					<td scope="col"><b>번호</b></td>
 					<td scope="col"><b>제목</b></td>
@@ -60,6 +52,9 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<c:if test="${'admin' eq sessionScope.userid}">
+		<div align="right"><button type="button" class="btn btn-outline-secondary" style="width:100px;" onclick="location.href='http://localhost:8090/board/notice_form'">글쓰기</button><br><br></div>
+	    </c:if>
 	</div>
 	<br>
 

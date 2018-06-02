@@ -19,7 +19,7 @@
 		<br> <br> <br>
 		<h4>
 			<center>
-				<span class="glyphicon glyphicon-bell"></span>&nbsp&nbsp아두이노
+				<span class="glyphicon glyphicon-bell"></span>&nbsp;&nbsp;${category}
 			</center>
 		</h4>
 	</div>
@@ -44,6 +44,9 @@
 				</div>
 			</c:forEach>
 		</div>
+		<c:if test="${'admin' eq sessionScope.userid}">
+		<div align="right"><br><br><button type="button" class="btn btn-outline-secondary" style="width:100px;" onclick="location.href='http://localhost:8090/product/form'">글쓰기</button><br><br></div>
+	    </c:if>
 	</div>
 
 	<div class="container">
