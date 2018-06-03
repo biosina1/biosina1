@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <style>
 .panel-login>.panel-heading a {
 	text-decoration: none;
@@ -51,6 +52,7 @@
 </style>
 </head>
 <body>
+
 	<script type="text/javascript">
 		function loginCheck() {
 
@@ -73,7 +75,6 @@
 	<br>
 	<br>
 	<br>
-
 	<div class="container ">
 		<center>
 			<div class="row justify-content-center align-items-center">

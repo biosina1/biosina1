@@ -33,6 +33,8 @@ public interface ProductService {
 	public void updateCart(CartVO vo) throws Exception;
 
 	public void deleteCart(int seq) throws Exception;
+	
+	public void deleteCart2(int u_seq) throws Exception;
 
 	public List<CartListVO> selectCart(int u_seq) throws Exception;
 	
@@ -45,6 +47,10 @@ public interface ProductService {
 
 	public List<OrderpVO> orderp(int u_seq) throws Exception;
 	
+	public List<OrderVO> allorderlist() throws Exception;
+	
+	public void orderupdate(long orderNum,String status) throws Exception;
+	//뉴, 힛 아이템
 	public List<ProductVO> newitem() throws Exception;
 
 	public List<ProductVO> hititem() throws Exception;

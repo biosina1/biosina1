@@ -62,6 +62,10 @@ public class ProductServiceImpl implements ProductService {
 	public void deleteCart(int seq) throws Exception {
 		dao.deleteCart(seq);
 	}
+	
+	public void deleteCart2(int u_seq) throws Exception{
+		dao.deleteCart2(u_seq);
+	}
 
 	public List<CartListVO> selectCart(int u_seq) throws Exception {
 		return dao.selectCart(u_seq);
@@ -83,6 +87,15 @@ public class ProductServiceImpl implements ProductService {
 	public List<OrderpVO> orderp(int u_seq) throws Exception {
 		return dao.orderp(u_seq);
 	}
+
+	public List<OrderVO> allorderlist() throws Exception {
+		return dao.allorderlist();
+	}
+
+	public void orderupdate(long orderNum, String status) throws Exception {
+		dao.orderupdate(orderNum, status);
+	}
+	// 뉴, 힛 아이템
 
 	public List<ProductVO> newitem() throws Exception {
 		return dao.newitem();

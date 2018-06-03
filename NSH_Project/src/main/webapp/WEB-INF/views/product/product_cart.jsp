@@ -130,6 +130,7 @@
 	<br>
 	<br>
 	<br>
+
 	<div class="container">
 		<div class="card shopping-cart">
 			<div class="card-header bg-dark text-light">
@@ -187,27 +188,19 @@
 					</div>
 				</div>
 			</div>
-		</div>
 
-
-
-		<div class="container" id="shippinginfo">
-			<div class="card-header bg-dark text-light">
-				<i class="fa fa-shopping-cart" aria-hidden="true"></i> 배송 정보
-				<div class="clearfix"></div>
-			</div>
-			<div class="card-body">
+			<div id="shippinginfo">
+				<div class="card-header bg-dark text-light">
+					<i class="fa fa-shopping-cart" aria-hidden="true"></i> 배송 정보
+					<div class="clearfix"></div>
+				</div>
 				<div class="card-body">
 					<form action="/product/addorder" method="post" class="orderForm"
 						name="orderForm">
-
 						<c:forEach var="item" items="${list}" varStatus="status">
 							<input type="hidden" name="p_seq" value="${item.p_seq}">
 							<input type="hidden" name="count" value="${item.count}">
 						</c:forEach>
-
-
-
 						<div class="row">
 							<div class="col-12 col-sm-12 col-md-2 text-center">성명</div>
 							<div
@@ -274,16 +267,16 @@
 						</div>
 					</form>
 				</div>
-			</div>
-			<div class="card-footer">
-				<center>
-					<button type="button" class="btn btn-outline-info" id="submitbtn"
-						style="width: 150px" onclick="submitbtn()">구매하기</button>
-				</center>
-
+				<div class="card-footer">
+					<center>
+						<button type="button" class="btn btn-outline-info" id="submitbtn"
+							style="width: 150px" onclick="submitbtn()">구매하기</button>
+					</center>
+				</div>
 			</div>
 		</div>
 	</div>
+
 
 
 	<script>

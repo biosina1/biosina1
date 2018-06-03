@@ -74,7 +74,7 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="/member/logout">로그아웃</a> 
 								<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="/member/modifyform">회원정보수정</a> 
+						<a class="dropdown-item" href="/member/modifyform?u_seq=${sessionScope.u_seq}">정보수정</a> 
 						<a class="dropdown-item" href="/product/selectcart?u_seq=${sessionScope.u_seq}">장바구니</a>
 						<a class="dropdown-item" href="/product/orderlist">주문정보</a>
 						<c:if test="${'admin' eq sessionScope.userid}">

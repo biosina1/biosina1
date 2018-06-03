@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javalec.sangho.service.MemberService;
@@ -34,14 +35,9 @@ public class MemberController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 * 
-	 * 
-	 */
-
+	// 회원가입
 	@RequestMapping(value = "/join_Form", method = RequestMethod.GET)
-	public String join_Form(Model model) {
+	public String join_Form(Model model) throws Exception {
 		return "member/join_Form";
 	}
 
@@ -53,38 +49,53 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String checkId(MemberVO vo, Model model) {
+	public String checkId(MemberVO vo, Model model) throws Exception {
 		service.insert(vo);
 		return "redirect:/login_Form";
 	}
 
+	// 회원정보수정
 	@RequestMapping(value = "/modifyform", method = RequestMethod.GET)
-	public String modifyform(HttpSession session, Model model) {
-		int u_seq = (int) session.getAttribute("u_seq");
+	public String modifyform(@RequestParam("u_seq") int u_seq,HttpSession session, Model model) throws Exception {
 		model.addAttribute("user", service.userinfo(u_seq));
 		return "member/user_modify";
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modify(MemberVO vo, Model model) {
+	public String modify(MemberVO vo, Model model) throws Exception {
 		service.update(vo);
 		return "redirect:/home";
 	}
 
-	@RequestMapping(value = "/orderlist", method = RequestMethod.GET)
-	public String orderlist(MemberVO vo, Model model) {
-		service.update(vo);
-		return "redirect:/home";
+	@RequestMapping(value = "/userlist", method = RequestMethod.GET)
+	public String userlist(MemberVO vo, Model model) {
+		model.addAttribute("list", service.select());
+		return "member/user_list";
 	}
-	// @RequestMapping(value = "/delete", method = RequestMethod.POST)
-	// public String checkId(MemberVO vo, Model model) {
-	// }
+
+	@RequestMapping(value = "/userdelete", method = RequestMethod.GET)
+	public void userdelete(@RequestParam("seq") int seq, Model model, HttpServletResponse response) throws Exception {
+
+		service.delete(seq);
+		PrintWriter writer = response.getWriter();
+		writer.println("<script>");
+		writer.println("alert(\"userdelete SUCCESS\");");
+		writer.println("history.back();");
+		writer.println("</script>");
+	}
+	/*
+	 * @RequestMapping(value = "/orderlist", method = RequestMethod.GET) public
+	 * String orderlist(MemberVO vo, Model model) { service.update(vo); return
+	 * "redirect:/home"; }
+	 * 
+	 * @RequestMapping(value = "/delete", method = RequestMethod.POST) public String
+	 * checkId(MemberVO vo, Model model) { }
+	 */
 
 	// 로그인
-	
 	@RequestMapping(value = "/login_Form", method = RequestMethod.GET)
 	public String login_Form(Model model) throws Exception {
-		return "/member/l_Form";
+		return "/member/login_Form";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)

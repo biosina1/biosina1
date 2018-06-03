@@ -19,9 +19,11 @@
 <body>
 	<script>
 		$("document").ready(function() {
-			var a = "${fn:length(length)}";
-			alert("주문한 내역이 존재하지 않습니다.");
-			history.back();
+			var a = "${fn:length(order)}";
+			if (a == 0) {
+				alert("주문한 내역이 존재하지 않습니다.");
+				history.back();
+			}
 		});
 	</script>
 	<div class="container" id="notice">
@@ -32,7 +34,6 @@
 			</center>
 		</h4>
 	</div>
-	<c:set var="length" value="${order}" />
 	<div class="container" id="orderlist">
 		<c:forEach var="item" items="${order}" varStatus="status">
 			<c:set var="orderNum" value="${item.orderNum}" />

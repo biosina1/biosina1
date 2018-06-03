@@ -17,7 +17,7 @@
 		p_content)
 		values(#{p_category},#{p_name},#{p_price},#{p_count},#{p_img},#{p_img2},#{p_content})
 	</insert>
-	
+
 	<update id="update">
 		update product_db set
 		p_category=#{p_category},
@@ -83,6 +83,11 @@
 	<delete id="deleteCart">
 		delete from cart_db where seq = #{seq}
 	</delete>
+	
+	<delete id="deleteCart2">
+		delete from cart_db where u_seq = #{u_seq}
+	</delete>
+
 
 	<!-- 주문 -->
 	<insert id="addorder">
@@ -98,6 +103,16 @@
 	</insert>
 
 	<!-- 주문조회 -->
+	<select id="allorderList"
+		resultType="com.javalec.sangho.vo.OrderVO">
+		select *from order_db
+	</select>
+
+	<update id="orderupdate">
+		update order_db set status = #{status} 
+		where orderNum = #{orderNum}
+	</update>
+
 	<select id="orderList"
 		resultType="com.javalec.sangho.vo.OrderVO">
 		select *from order_db where u_seq =

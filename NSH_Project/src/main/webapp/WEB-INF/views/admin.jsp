@@ -14,6 +14,23 @@
 }
 </style>
 </head>
+<script>
+	function submitbtn(num){
+		if(num == 0){
+			$("#location").attr("action","/board/notice_form");
+			$("#location").submit();
+		}else if(num == 1){
+			$("#location").attr("action","/product/form");
+			$("#location").submit();
+		}else if(num == 2){
+			$("#location").attr("action","/member/userlist");
+			$("#location").submit();
+		}else if(num == 3){
+			$("#location").attr("action","/product/allorderlist");
+			$("#location").submit();
+		}
+	}
+</script>
 <body>
 	<div class="container" id="admin">
 		<br> <br> <br>
@@ -27,18 +44,15 @@
 	<div class="container">
 		<table class="table">
 			<tr>
-				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;">공지 등록</button></th>
-				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;">상품 관리</button></th>
-				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;">회원 관리</button></th>
-				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;">주문 관리</button></th>
-			</tr>
-			<tr>
-				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;">Secondary</button></th>
-				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;">Secondary</button></th>
-				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;">Secondary</button></th>
-				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;">Secondary</button></th>
+				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;" onclick="submitbtn(0)">공지 등록</button></th>
+				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;" onclick="submitbtn(1)">상품 등록</button></th>
+				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;" onclick="submitbtn(2)">회원 관리</button></th>
+				<th scope="col"><button type="button" class="btn btn-outline-secondary" style="width:100%; height:150px;" onclick="submitbtn(3)">주문 관리</button></th>
 			</tr>
 		</table>
 	</div>
+	
+	<form id="location">
+	</form>
 </body>
 </html>

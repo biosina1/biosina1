@@ -8,16 +8,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+#notice {
+	margin-top: 70px;
+	margin-bottom: 70px;
+	height: 150px;
+	background-color: #F8F8F8;
+}
+</style>
 </head>
 <body>
-
+	<div class="container" id="notice">
+		<br> <br> <br>
+		<h4>
+			<center>
+				<span class="glyphicon glyphicon-bell"></span>&nbsp;&nbsp;공지 등록
+			</center>
+		</h4>
+	</div>
 	<div class="container">
-		<div class="row">
+		<div class="row h-100 justify-content-center align-items-center">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="well well-sm">
 					<form class="form-horizontal" action="/board/notice_create"
 						method="post">
 						<fieldset>
+							<div class="form-group">
+								<div class="col-md-12">
+									<input id="writer" name="writer" type="text" placeholder="관리자"
+										class="form-control" value="관리자" readonly>
+								</div>
+							</div>
+
 							<div class="form-group">
 								<div class="col-md-12">
 									<input id="title" name="title" type="text" placeholder="제목"
@@ -39,9 +61,7 @@
 								</div>
 							</div>
 						</fieldset>
-
-						<input type="hidden" name="writer" value="관리자"> <input
-							type="hidden" name="type" value="공지사항">
+						<input type="hidden" name="type" value="공지사항">
 					</form>
 				</div>
 			</div>

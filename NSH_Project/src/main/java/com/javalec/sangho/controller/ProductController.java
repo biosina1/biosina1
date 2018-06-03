@@ -225,6 +225,8 @@ public class ProductController {
 			service.order_product(ordervo[i]);
 		}
 
+		service.deleteCart2(u_seq);
+		
 		out.print("<script>");
 		out.print("alert('Order Success');");
 		out.print("location.href='/home';");
@@ -234,11 +236,23 @@ public class ProductController {
 	@RequestMapping(value = "/orderlist", method = RequestMethod.GET)
 	public String orderlist(Model model, HttpSession session) throws Exception {
 		int u_seq = (int) session.getAttribute("u_seq");
-		System.out.println(u_seq);
-		List<OrderVO> vo = service.order(u_seq);
-		System.out.println(vo.size());
 		model.addAttribute("order", service.order(u_seq));
 		model.addAttribute("orderp", service.orderp(u_seq));
 		return "order/order_list";
+	}
+
+	@RequestMapping(value = "/allorderlist", method = RequestMethod.GET)
+	public String allorderlist(Model model) throws Exception {
+		model.addAttribute("order", service.allorderlist());
+		return "order/order_modify";
+	}
+
+	@RequestMapping(value = "/orderupdate", method = RequestMethod.GET)
+	public String orderupdate(@RequestParam("orderNum") long orderNum, @RequestParam("status") String status,
+			Model model) throws Exception {
+		System.out.println(orderNum);
+		System.out.println(status);
+		service.orderupdate(orderNum, status);
+		return "redirect:/product/allorderlist";
 	}
 }

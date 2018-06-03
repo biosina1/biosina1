@@ -34,6 +34,8 @@ public interface ProductDAO {
 
 	public void deleteCart(int seq) throws Exception;
 
+	public void deleteCart2(int u_seq) throws Exception;
+
 	public List<CartListVO> selectCart(int u_seq) throws Exception;
 
 	// Order
@@ -45,6 +47,10 @@ public interface ProductDAO {
 	public List<OrderVO> order(int u_seq) throws Exception;
 
 	public List<OrderpVO> orderp(int u_seq) throws Exception;
+
+	public List<OrderVO> allorderlist() throws Exception;
+
+	public void orderupdate(long orderNum, String status) throws Exception;
 
 	// New and Hit Item
 	public List<ProductVO> newitem() throws Exception;

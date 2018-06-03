@@ -169,15 +169,24 @@
 								"/reply/" + bno + "/" + page,
 								function(data) {
 									var str = "";
-
+									var sessionid = "${sessionScope.userid}";
 									$(data.list)
 											.each(
 													function() {
+														if(sessionid==this.replyer){
 														str += "<li data-seq='"+this.seq+"' class='replyLi'>"
 																+ this.replyer
 																+ "&nbsp;&nbsp;:&nbsp;&nbsp;"
 																+ this.replytext
-																+ "<button>수정하기</button></li>";
+																+ "&nbsp;&nbsp;&nbsp;&nbsp;"
+																+ "<button>수정하기</button></li><hr>";
+														}else{
+															str += "<li data-seq='"+this.seq+"' class='replyLi'>"
+															+ this.replyer
+															+ "&nbsp;&nbsp;:&nbsp;&nbsp;"
+															+ this.replytext
+															+ "&nbsp;&nbsp;&nbsp;&nbsp;</li><hr>";
+														}
 													});
 
 									$("#replies").html(str);
@@ -304,14 +313,13 @@
 					<td colspan=2><ul id="replies"></ul></td>
 				<tr>
 				<tr>
-					<td colspan=2><center><ul class='pagination'></ul></center></td>
+					<td colspan=2 align="center"><ul class='pagination justify-content-center'></ul></td>
 				<tr>
 			</table>
 		</div>
 	</div>
 
-
-	<div id='modDiv' style="display: none;">
+		<div id='modDiv' style="display: none;">
 		<div class='modal-title'></div>
 		<div>
 			<input type='text' id='replytext'>
@@ -321,6 +329,7 @@
 			<button type="button" id="replyDelBtn">DELETE</button>
 			<button type="button" id='closeBtn'>Close</button>
 		</div>
-	</div>
+
+</div>
 </body>
 </html>

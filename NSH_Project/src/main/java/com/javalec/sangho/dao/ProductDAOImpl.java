@@ -52,8 +52,8 @@ public class ProductDAOImpl implements ProductDAO {
 	public ProductVO content(int seq) throws Exception {
 		return sqlsession.selectOne(namespace + ".content", seq);
 	}
-	
-	public void hitup(int seq) throws Exception{
+
+	public void hitup(int seq) throws Exception {
 		sqlsession.update(namespace + ".hitup", seq);
 	}
 
@@ -70,33 +70,49 @@ public class ProductDAOImpl implements ProductDAO {
 	public void deleteCart(int seq) throws Exception {
 		sqlsession.delete(namespace + ".deleteCart", seq);
 	}
+	
+	public void deleteCart2(int u_seq) throws Exception{
+		sqlsession.delete(namespace + ".deleteCart2", u_seq);
+	}
 
 	public List<CartListVO> selectCart(int u_seq) throws Exception {
 		return sqlsession.selectList(namespace + ".selectCart", u_seq);
 	}
-	
+
 	// 주문
-	public void addorder(OrderVO vo) throws Exception{
+	public void addorder(OrderVO vo) throws Exception {
 		sqlsession.insert(namespace + ".addorder", vo);
 	}
-	
-	public void order_product(OrderProductVO vo) throws Exception{
+
+	public void order_product(OrderProductVO vo) throws Exception {
 		sqlsession.insert(namespace + ".detail_order", vo);
 	}
-	
-	public List<OrderVO> order(int u_seq) throws Exception{
+
+	public List<OrderVO> order(int u_seq) throws Exception {
 		return sqlsession.selectList(namespace + ".orderList", u_seq);
 	}
 
-	public List<OrderpVO> orderp(int u_seq) throws Exception{
+	public List<OrderpVO> orderp(int u_seq) throws Exception {
 		return sqlsession.selectList(namespace + ".orderpList", u_seq);
 	}
-	
-	public List<ProductVO> newitem() throws Exception{
+
+	public List<OrderVO> allorderlist() throws Exception {
+		return sqlsession.selectList(namespace + ".allorderList");
+	}
+
+	public void orderupdate(long orderNum, String status) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("orderNum", orderNum);
+		map.put("status", status);
+		sqlsession.update(namespace + ".orderupdate", map);
+	}
+
+	// 힛, 뉴 아이템
+	public List<ProductVO> newitem() throws Exception {
 		return sqlsession.selectList(namespace + ".newitem");
 	}
 
-	public List<ProductVO> hititem() throws Exception{
+	public List<ProductVO> hititem() throws Exception {
 		return sqlsession.selectList(namespace + ".hititem");
 	}
 }
