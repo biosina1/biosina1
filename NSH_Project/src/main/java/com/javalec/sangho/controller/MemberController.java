@@ -51,7 +51,7 @@ public class MemberController {
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String checkId(MemberVO vo, Model model) throws Exception {
 		service.insert(vo);
-		return "redirect:/login_Form";
+		return "redirect:/home";
 	}
 
 	// 회원정보수정
@@ -59,6 +59,12 @@ public class MemberController {
 	public String modifyform(@RequestParam("u_seq") int u_seq,HttpSession session, Model model) throws Exception {
 		model.addAttribute("user", service.userinfo(u_seq));
 		return "member/user_modify";
+	}
+	
+	@RequestMapping(value = "/modifyform2", method = RequestMethod.GET)
+	public String modifyform2(@RequestParam("u_seq") int u_seq,HttpSession session, Model model) throws Exception {
+		model.addAttribute("user", service.userinfo(u_seq));
+		return "member/user_modify2";
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)

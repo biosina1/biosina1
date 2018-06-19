@@ -73,7 +73,7 @@
 		</table>
 	</div>
 
-	<form id="locationform" action="/member/modifyform">
+	<form id="locationform" action="/member/modifyform2">
 		<input type="hidden" name="seq" id="seq"> <input type="hidden"
 			name="u_seq" id="u_seq">
 	</form>

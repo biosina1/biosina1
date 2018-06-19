@@ -97,7 +97,7 @@ public class ProductController {
 			@RequestParam(value = "file2", defaultValue = "") MultipartFile file2, Model model) throws Exception {
 		String attach_path = "/resources/image/";
 		String path = uploadPath + attach_path;
-
+		System.out.println(vo.getP_category());
 		if (file.getOriginalFilename().equals("")) {
 			vo.setP_img(img);
 
@@ -226,7 +226,7 @@ public class ProductController {
 		}
 
 		service.deleteCart2(u_seq);
-		
+
 		out.print("<script>");
 		out.print("alert('Order Success');");
 		out.print("location.href='/home';");

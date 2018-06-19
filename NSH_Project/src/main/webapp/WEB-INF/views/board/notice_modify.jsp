@@ -11,11 +11,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+#notice {
+	margin-top: 70px;
+	margin-bottom: 70px;
+	height: 150px;
+	background-color: #F8F8F8;
+}
+</style>
 </head>
 <body>
-
+<div class="container" id="notice">
+		<br> <br> <br>
+		<h4>
+			<center>
+				<span class="glyphicon glyphicon-bell"></span>&nbsp;&nbsp;공지사항 수정
+			</center>
+		</h4>
+	</div>
 	<div class="container">
-		<div class="row">
+		<div class="row h-100 justify-content-center align-items-center">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="well well-sm">
 					<form class="form-horizontal" action="/board/notice_modify"

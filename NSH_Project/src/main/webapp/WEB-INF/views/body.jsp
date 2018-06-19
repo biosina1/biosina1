@@ -42,7 +42,7 @@
 	<br>
 	<br>
 
-	<div class="container">
+	 <div class="container">
 		<h6>NEW ITEM</h6>
 		<br>
 		<div class="row">
@@ -67,7 +67,7 @@
 	</div>
 	<br>
 	<br>
-
+ 
 	<div class="container">
 		<h6>HIT ITEM</h6>
 		<br>

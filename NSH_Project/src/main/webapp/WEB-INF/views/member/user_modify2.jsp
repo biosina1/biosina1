@@ -147,22 +147,22 @@ p {
 
 									<div class="form-group">
 										<input type="password" name="userpw" id="userpw" tabindex="2"
-											class="form-control" placeholder="비밀번호" >
+											class="form-control" placeholder="비밀번호" value="${user.userpw}">
 									</div>
 									<div class="form-group">
 										<input type="password" name="userpw2" id="userpw2"
-											tabindex="2" class="form-control" placeholder="비밀번호 확인">
+											tabindex="2" class="form-control" placeholder="비밀번호 확인" value="${user.userpw}">
 									</div>
 
 									<div class="form-group">
 										<input type="username" name="username" id="username"
 											tabindex="2" class="form-control" value="${user.username}"
-											placeholder="이름" readonly>
+											placeholder="이름" >
 									</div>
 									<div class="form-group" style="float: left;">
 										<input type="text" name="addrcode" id="addrcode" tabindex="1"
 											class="form-control" placeholder="우편번호"
-											value="${user.addrcode}" readonly>
+											value="${user.addrcode}" >
 									</div>
 
 									<div class="form-group" id="button_size">
@@ -173,7 +173,7 @@ p {
 									<div class="form-group">
 										<input type="addr" name="addr" id="addr" tabindex="2"
 											class="form-control" placeholder="주소" value="${user.addr}"
-											readonly>
+											>
 									</div>
 									<div class="form-group">
 										<input type="addr2" name="addr2" id="addr2" tabindex="2"
