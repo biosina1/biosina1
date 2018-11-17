@@ -12,6 +12,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
+#replyList {
+	position: relative;
+}
+
+#modDiv {
+	display: inline-block;
+	width: 200px;
+	height: 118px;
+	border: 1px solid lightgray;
+	background: #F8F8F8;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+}
+
 #notice {
 	margin-top: 70px;
 	margin-bottom: 70px;
@@ -107,9 +125,12 @@
 
 				var seq = reply.attr("data-seq");
 				var replytext = reply.text();
-
+				var replyContent = replytext.split(':');
+				var replyContent2 = replyContent[1].split('수정하기');
+				console.log('replyContent : ', replyContent);
+				console.log('replyContent2 : ', replyContent2);
 				$(".modal-title").html(seq);
-				$("#replytext").val(replytext);
+				$("#replytext").val(replyContent2[0]);
 				$("#modDiv").show("slow");
 
 			});
@@ -161,6 +182,10 @@
 					}
 				});
 			});
+			
+			$("#closeBtn").on("click", function() {
+				$("#modDiv").hide("slow");
+			});
 
 			function getPageList(page) {
 
@@ -173,19 +198,19 @@
 									$(data.list)
 											.each(
 													function() {
-														if(sessionid==this.replyer){
-														str += "<li data-seq='"+this.seq+"' class='replyLi'>"
-																+ this.replyer
-																+ "&nbsp;&nbsp;:&nbsp;&nbsp;"
-																+ this.replytext
-																+ "&nbsp;&nbsp;&nbsp;&nbsp;"
-																+ "<button>수정하기</button></li><hr>";
-														}else{
+														if (sessionid == this.replyer) {
 															str += "<li data-seq='"+this.seq+"' class='replyLi'>"
-															+ this.replyer
-															+ "&nbsp;&nbsp;:&nbsp;&nbsp;"
-															+ this.replytext
-															+ "&nbsp;&nbsp;&nbsp;&nbsp;</li><hr>";
+																	+ this.replyer
+																	+ "&nbsp;&nbsp;:&nbsp;&nbsp;"
+																	+ this.replytext
+																	+ "&nbsp;&nbsp;&nbsp;&nbsp;"
+																	+ "<button>수정하기</button></li><hr>";
+														} else {
+															str += "<li data-seq='"+this.seq+"' class='replyLi'>"
+																	+ this.replyer
+																	+ "&nbsp;&nbsp;:&nbsp;&nbsp;"
+																	+ this.replytext
+																	+ "&nbsp;&nbsp;&nbsp;&nbsp;</li><hr>";
 														}
 													});
 
@@ -230,7 +255,7 @@
 	<form role="form" method="post">
 		<input type="hidden" name="seq" value=${notice_content.seq}>
 	</form>
-	
+
 	<div class="container" id="notice">
 		<br> <br> <br>
 		<h4>
@@ -239,7 +264,7 @@
 			</center>
 		</h4>
 	</div>
-	
+
 	<div class="row">
 		<div class="container col-md-7 col-md-offset-3">
 			<table class="table table-bordered" width=100%>
@@ -264,13 +289,16 @@
 				</tr>
 				<tr>
 					<th colspan=2>
-					<center>
-						<button type="button" class="btn btn-outline-primary" style="width: 120px;">목록</button>
-						<c:if test="${'admin' eq sessionScope.userid}">
-						<button type="button" class="btn btn-outline-secondary" style="width: 120px;">수정</button>
-						<button type="button" class="btn btn-outline-success" style="width: 120px;">삭제</button>
-						</c:if>
-					</center>
+						<center>
+							<button type="button" class="btn btn-outline-primary"
+								style="width: 120px;">목록</button>
+							<c:if test="${'admin' eq sessionScope.userid}">
+								<button type="button" class="btn btn-outline-secondary"
+									style="width: 120px;">수정</button>
+								<button type="button" class="btn btn-outline-success"
+									style="width: 120px;">삭제</button>
+							</c:if>
+						</center>
 					</th>
 				</tr>
 
@@ -278,58 +306,61 @@
 					<td colspan=2><h6>댓글 작성자</h6></td>
 				<tr>
 				<tr>
-					<td colspan=2>
-					<c:if test="${null ne sessionScope.userid}">
-						<input type='text' class="form-control form-control" name='replyer' id='newReplyWriter' size='20' value="${sessionScope.userid}" readonly>
-					</c:if>
-					<c:if test="${null eq sessionScope.userid}">
-						<input type='text' class="form-control form-control" name='replyer' id='newReplyWriter' size='60' value="로그인 후 사용가능"readonly>
-					</c:if>
-					</td>
+					<td colspan=2><c:if test="${null ne sessionScope.userid}">
+							<input type='text' class="form-control form-control"
+								name='replyer' id='newReplyWriter' size='20'
+								value="${sessionScope.userid}" readonly>
+						</c:if> <c:if test="${null eq sessionScope.userid}">
+							<input type='text' class="form-control form-control"
+								name='replyer' id='newReplyWriter' size='60' value="로그인 후 사용가능"
+								readonly>
+						</c:if></td>
 				<tr>
 				<tr>
 					<td colspan=2><h6>댓글 내용</h6></td>
 				<tr>
 				<tr>
-					<td colspan=2>
-					<c:if test="${null ne sessionScope.userid}">
-					<input type='text' name='replytext' id='newReplyText' class="form-control form-control" size='60'>
-					</c:if>
-					<c:if test="${null eq sessionScope.userid}">
-					<input type='text' name='replytext' id='newReplyText' class="form-control form-control" size='60' readonly>
-					</c:if>
-					</td>
+					<td colspan=2><c:if test="${null ne sessionScope.userid}">
+							<input type='text' name='replytext' id='newReplyText'
+								class="form-control form-control" size='60'>
+						</c:if> <c:if test="${null eq sessionScope.userid}">
+							<input type='text' name='replytext' id='newReplyText'
+								class="form-control form-control" size='60' readonly>
+						</c:if></td>
 				<tr>
 					<c:if test="${null ne sessionScope.userid}">
-				<tr>
-					<td colspan=2>
-					<center>
-					<button type="button" class="btn btn-outline-info" id="replyAddBtn" style="width: 120px;">작성 완료</button>
-					</center>
-					</td>
-				<tr>
+						<tr>
+							<td colspan=2>
+								<center>
+									<button type="button" class="btn btn-outline-info"
+										id="replyAddBtn" style="width: 120px;">작성 완료</button>
+								</center>
+							</td>
+						<tr>
 					</c:if>
 				<tr>
-					<td colspan=2><ul id="replies"></ul></td>
+					<td colspan=2 id="replyList">
+						<ul id="replies"></ul>
+						<div id='modDiv' style="display: none;">
+							<div class='modal-title'></div>
+							<div>
+								<input type='text' id='replytext'>
+							</div>
+							<div>
+								<button type="button" id="replyModBtn">Modify</button>
+								<button type="button" id="replyDelBtn">DELETE</button>
+								<button type="button" id='closeBtn'>Close</button>
+							</div>
+
+						</div>
+					</td>
 				<tr>
 				<tr>
-					<td colspan=2 align="center"><ul class='pagination justify-content-center'></ul></td>
+					<td colspan=2 align="center"><ul
+							class='pagination justify-content-center'></ul></td>
 				<tr>
 			</table>
 		</div>
 	</div>
-
-		<div id='modDiv' style="display: none;">
-		<div class='modal-title'></div>
-		<div>
-			<input type='text' id='replytext'>
-		</div>
-		<div>
-			<button type="button" id="replyModBtn">Modify</button>
-			<button type="button" id="replyDelBtn">DELETE</button>
-			<button type="button" id='closeBtn'>Close</button>
-		</div>
-
-</div>
 </body>
 </html>
